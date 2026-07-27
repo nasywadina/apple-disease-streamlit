@@ -71,7 +71,7 @@ st.markdown(
     }
 
     .step-card p {
-        color: #FFFFFF !important;
+        color: #475569 !important;
         font-size: 13px;
         margin: 0;
     }
@@ -96,7 +96,7 @@ st.markdown(
 
     /* Expander Text Fix */
     .streamlit-expanderHeader {
-        color: #0F172A !important;
+        color: #FFFFFF !important;
         font-weight: 600 !important;
     }
     </style>
