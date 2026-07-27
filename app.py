@@ -71,7 +71,7 @@ st.markdown(
     }
 
     .step-card p {
-        color: #475569 !important;
+        color: #FFFFFF !important;
         font-size: 13px;
         margin: 0;
     }
