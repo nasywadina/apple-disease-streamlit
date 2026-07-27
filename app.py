@@ -109,12 +109,12 @@ if uploaded_file is not None:
             confidence = float(predictions[top_idx]) * 100
 
         # ======================================================================
-        # PENETAPAN THRESHOLDING
+        # TAMBAHKAN THRESHOLDING DI SINI
         # ======================================================================
         CONFIDENCE_THRESHOLD = 70.0  # Batas minimal keyakinan (70%)
 
         if confidence < CONFIDENCE_THRESHOLD:
-            # ❌ JIKA DI BAWAH THRESHOLD: HANYA TAMPILKAN PERINGATAN
+            # Jika tingkat keyakinan di bawah 60%
             st.warning("⚠️ **Gambar Tidak Terdeteksi / Kurang Jelas**")
             st.error(
                 f"Tingkat keyakinan tertinggi hanya **{confidence:.2f}%** "
@@ -123,7 +123,7 @@ if uploaded_file is not None:
                 "Harap unggah gambar buah apel yang lebih jelas dan dekat."
             )
         else:
-            # ✅ JIKA LULUS THRESHOLD: BARU TAMPILKAN HASIL DIAGNOSA LENGKAP
+            # Jika lulus thresholding (Keyakinan >= 60%)
             st.success(f"**Hasil Diagnosa:** {predicted_class}")
             st.info(f"**Tingkat Keyakinan (Confidence):** {confidence:.2f}%")
 
@@ -137,7 +137,7 @@ if uploaded_file is not None:
                     st.markdown("**Cara Pencegahan / Penanganan:**")
                     st.write(detail.get("prevention", ""))
 
-        # Menampilkan grafik probabilitas untuk semua kelas (opsional, tetap di luar if-else)
+        # Menampilkan grafik probabilitas untuk semua kelas (tetap ada)
         st.write("---")
         st.subheader("Probabilitas Seluruh Kelas")
         prob_dict = {
