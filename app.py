@@ -109,21 +109,25 @@ if uploaded_file is not None:
             confidence = float(predictions[top_idx]) * 100
 
         # ======================================================================
-        # TAMBAHKAN THRESHOLDING DI SINI
+        # PENETAPAN THRESHOLDING
         # ======================================================================
-        CONFIDENCE_THRESHOLD = 70.0  # Batas minimal keyakinan (70%)
+        CONFIDENCE_THRESHOLD = 60.0  # Batas minimal keyakinan (60%)
 
         if confidence < CONFIDENCE_THRESHOLD:
-            # Jika tingkat keyakinan di bawah 60%
-            st.warning("⚠️ **Gambar Tidak Terdeteksi / Kurang Jelas**")
+            # ❌ JIKA DI BAWAH THRESHOLD
+            st.warning("⚠️ **Hasil Diagnosa: Tidak Terdeteksi**")
             st.error(
                 f"Tingkat keyakinan tertinggi hanya **{confidence:.2f}%** "
                 f"(di bawah batas minimal {CONFIDENCE_THRESHOLD}%).\n\n"
                 "Sistem tidak dapat mengidentifikasi penyakit secara pasti. "
                 "Harap unggah gambar buah apel yang lebih jelas dan dekat."
             )
+
+            # Buat nilai probabilitas semua kelas menjadi 0.0
+            prob_dict = {class_name: 0.0 for class_name in CLASS_NAMES}
+
         else:
-            # Jika lulus thresholding (Keyakinan >= 60%)
+            # ✅ JIKA MEMENUHI THRESHOLD (>= 60%)
             st.success(f"**Hasil Diagnosa:** {predicted_class}")
             st.info(f"**Tingkat Keyakinan (Confidence):** {confidence:.2f}%")
 
@@ -137,31 +141,15 @@ if uploaded_file is not None:
                     st.markdown("**Cara Pencegahan / Penanganan:**")
                     st.write(detail.get("prevention", ""))
 
-        # Menampilkan grafik probabilitas untuk semua kelas (tetap ada)
+            # Ambil nilai probabilitas asli dari model
+            prob_dict = {
+                CLASS_NAMES[i]: float(predictions[i])
+                for i in range(len(CLASS_NAMES))
+            }
+
+        # ======================================================================
+        # MENAMPILKAN GRAFIK PROBABILITAS
+        # ======================================================================
         st.write("---")
         st.subheader("Probabilitas Seluruh Kelas")
-        prob_dict = {
-            CLASS_NAMES[i]: float(predictions[i])
-            for i in range(len(CLASS_NAMES))
-        }
-        st.bar_chart(prob_dict)
-        
-        # Tampilkan Hasil
-        st.success(f"**Hasil Diagnosa:** {predicted_class}")
-        st.info(f"**Tingkat Keyakinan (Confidence):** {confidence:.2f}%")
-
-        detail = CLASS_DETAILS.get(predicted_class, {})
-        if detail:
-            with st.expander("📌 Detail Penyakit & Solusi Penanganan", expanded=True):
-                st.markdown(f"**{detail.get('title', '')}**")
-                st.write(detail.get("desc", ""))
-                st.markdown("**Cara Pencegahan / Penanganan:**")
-                st.write(detail.get("prevention", ""))
-
-        st.write("---")
-        st.subheader("Probabilitas Seluruh Kelas")
-        prob_dict = {
-            CLASS_NAMES[i]: float(predictions[i])
-            for i in range(len(CLASS_NAMES))
-        }
         st.bar_chart(prob_dict)
