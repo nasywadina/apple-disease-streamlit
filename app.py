@@ -7,56 +7,96 @@ import tensorflow as tf
 # CONFIGURASI HALAMAN
 # ------------------------------------------------------------------------------
 st.set_page_config(
-    page_title="Pendeteksi Penyakit Buah Apel",
+    page_title="Apple Diagnostic AI - Sistem Deteksi Penyakit Apel",
     page_icon="🍎",
     layout="wide",
     initial_sidebar_state="expanded",
 )
 
 # ------------------------------------------------------------------------------
-# CUSTOM CSS (WARNA & TAMPILAN MODERN)
+# CUSTOM CSS (DESAIN PROFESIONAL & PALET WARNA TEAL-NAVY)
 # ------------------------------------------------------------------------------
 st.markdown(
     """
     <style>
+    /* Google Fonts Import */
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+    html, body, [class*="css"]  {
+        font-family: 'Inter', sans-serif;
+    }
+
     /* Background Utama */
-    .main {
-        background-color: #f4f6f8;
+    .stApp {
+        background-color: #F8FAFC;
     }
     
     /* Header & Title Styling */
-    h1, h2, h3 {
-        color: #1b5e20;
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    h1 {
+        color: #0F5257 !important;
+        font-weight: 700 !important;
+        letter-spacing: -0.5px;
     }
     
-    /* Styling Kartu / Card Box */
-    .custom-card {
-        background-color: #ffffff;
-        padding: 24px;
-        border-radius: 12px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-        margin-bottom: 20px;
-        border-left: 5px solid #2e7d32;
+    h2, h3 {
+        color: #0B2545 !important;
+        font-weight: 600 !important;
     }
     
-    .info-card {
-        background-color: #e8f5e9;
-        padding: 16px;
-        border-radius: 8px;
-        border: 1px solid #c8e6c9;
-        margin-bottom: 15px;
+    /* Custom Card Style */
+    .pro-card {
+        background-color: #FFFFFF;
+        padding: 28px;
+        border-radius: 14px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03), 0 1px 3px rgba(0, 0, 0, 0.02);
+        margin-bottom: 24px;
+        border: 1px solid #E2E8F0;
     }
 
-    /* Progress bar custom color */
-    .stProgress > div > div > div > div {
-        background-color: #4caf50;
+    .pro-card-header {
+        border-left: 4px solid #0F5257;
+        padding-left: 12px;
+        margin-bottom: 18px;
     }
     
-    /* Sidebar Styling */
+    .step-card {
+        background-color: #F1F5F9;
+        padding: 20px;
+        border-radius: 10px;
+        border: 1px solid #E2E8F0;
+        height: 100%;
+    }
+
+    .step-number {
+        display: inline-block;
+        background-color: #0F5257;
+        color: white;
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        text-align: center;
+        line-height: 28px;
+        font-weight: 600;
+        font-size: 14px;
+        margin-bottom: 10px;
+    }
+
+    /* Custom Progress Bar Color */
+    .stProgress > div > div > div > div {
+        background: linear-gradient(90deg, #0F5257 0%, #0B2545 100%);
+        border-radius: 8px;
+    }
+
+    /* Sidebar Custom Style */
     section[data-testid="stSidebar"] {
-        background-color: #ffffff;
-        border-right: 1px solid #e0e0e0;
+        background-color: #FFFFFF;
+        border-right: 1px solid #E2E8F0;
+    }
+
+    /* Streamlit Expander Style Fix */
+    .streamlit-expanderHeader {
+        font-weight: 600;
+        color: #0F5257;
     }
     </style>
 """,
@@ -64,7 +104,7 @@ st.markdown(
 )
 
 # ------------------------------------------------------------------------------
-# LOAD MODEL & KONSTANTA
+# LOAD MODEL & DATASET CLASS INFO
 # ------------------------------------------------------------------------------
 @st.cache_resource
 def load_apple_model():
@@ -88,33 +128,33 @@ CLASS_NAMES = [
 CLASS_DETAILS = {
     "Anthracnose": {
         "title": "Antraknosa (Anthracnose)",
-        "desc": "Disebabkan oleh infeksi jamur Colletotrichum. Gejala ditandai dengan munculnya bercak melingkar berwarna cokelat kehitaman yang cekung pada permukaan kulit buah apel.",
-        "prevention": "Pangkas bagian tanaman terinfeksi, tingkatkan sirkulasi udara di sekitar tajuk pohon, dan lakukan penyemprotan fungisida berbasis tembaga secara berkala.",
+        "desc": "Penyakit akibat infeksi jamur Colletotrichum. Mengakibatkan lesi bercak cokelat kehitaman yang mencekung pada permukaan kulit buah apel.",
+        "prevention": "Lakukan pemangkasan bagian terinfeksi, tingkatkan sirkulasi udara di tajuk pohon, dan aplikasikan fungisida berbasis tembaga.",
     },
     "Black Pox": {
         "title": "Cacar Hitam (Black Pox)",
-        "desc": "Infeksi jamur Helminthosporium papulosum yang memicu timbulnya bintik-bintik hitam kecil sedikit menonjol dan kasar pada permukaan buah.",
-        "prevention": "Sanitasi kebun dengan membersihkan buah dan daun yang gugur di tanah, serta aplikasikan fungisida pelindung sejak fase awal pembentukan buah.",
+        "desc": "Disebabkan oleh jamur Helminthosporium papulosum yang menimbulkan pustul/bintik hitam menonjol dan kasar pada buah.",
+        "prevention": "Jaga sanitasi kebun dari guguran buah tua, serta semprotkan fungisida pelindung secara teratur pada awal musim pembentukan buah.",
     },
     "Black Rot": {
         "title": "Busuk Hitam (Black Rot)",
-        "desc": "Disebabkan oleh Botryosphaeria obtusa. Menyebabkan buah membusuk dengan pola melingkar berwarna cokelat hingga akhirnya mengering, menghitam, dan mengerut menyerupai mumi.",
-        "prevention": "Kumpulkan dan bakar buah yang terinfeksi mummy apple, cegah luka fisik pada buah, dan aplikasikan fungisida preventif.",
+        "desc": "Infeksi serius oleh Botryosphaeria obtusa yang memicu pembusukan melingkar hingga buah mengering dan mengkerut menghitam.",
+        "prevention": "Buang dan musnahkan buah yang mengering (mummy apple), hindari luka mekanis pada buah, dan aplikasikan fungisida preventif.",
     },
     "Codling Moth": {
         "title": "Hama Ulat Apel (Codling Moth)",
-        "desc": "Kerusakan akibat larva ngat Cydia pomonella yang menggerogoti dan membuat lorong ke dalam daging hingga inti/biji buah apel.",
-        "prevention": "Gunakan perangkap feromon untuk memantau populasi ngat, bungkus buah apel muda (*fruit bagging*), atau aplikasikan biologis/insektisida terdaftar.",
+        "desc": "Kerusakan fisik akibat larva Cydia pomonella yang menggerogoti hingga membuat lorong menuju bagian dalam dan biji apel.",
+        "prevention": "Gunakan perangkap feromon, pasang pembungkus buah (fruit bagging), atau gunakan insektisida hayati terdaftar.",
     },
     "Healthy": {
         "title": "Buah Apel Sehat (Healthy)",
-        "desc": "Buah apel berada dalam kondisi segar, tekstur permukaan mulus, dan bebas dari bercak infeksi jamur maupun kerusakan akibat hama.",
-        "prevention": "Pertahankan pola pemeliharaan rutin, pemupukan berimbang, drainase tanah yang baik, serta pemantauan kebun secara periodik.",
+        "desc": "Kondisi fisik buah apel optimal, permukaan mulus, dan bebas dari tanda-tanda infeksi patogen maupun serangan hama.",
+        "prevention": "Pertahankan pemeliharaan rutin, pemupukan berimbang, dan manajemen pengairan tanah yang optimal.",
     },
     "Powdery Mildew": {
         "title": "Embun Tepung (Powdery Mildew)",
-        "desc": "Infeksi jamur Podosphaera leucotricha yang ditandai dengan bercak atau lapisan halus berwarna putih keputihan menyerupai bedak/tepung pada kulit buah atau daun.",
-        "prevention": "Tanam varietas yang lebih tahan, pangkas tunas yang terinfeksi pada awal musim semi, dan gunakan fungisida berbahan aktif sulfur.",
+        "desc": "Disebabkan oleh jamur Podosphaera leucotricha yang melapisi permukaan kulit buah atau daun dengan lapisan seperti serbuk putih.",
+        "prevention": "Gunakan varietas tanaman yang memiliki ketahanan tinggi dan lakukan pemangkasan tunas terinfeksi serta aplikasi fungisida sulfur.",
     },
 }
 
@@ -127,72 +167,76 @@ def preprocess_image(img):
 # ------------------------------------------------------------------------------
 # SIDEBAR NAVIGATION
 # ------------------------------------------------------------------------------
-st.sidebar.image("https://img.icons8.com/color/96/apple.png", width=70)
-st.sidebar.title("Navigasi Sistem")
+st.sidebar.markdown("### 🍎 **Apple Diagnostic System**")
+st.sidebar.caption("Deep Learning Image Analysis v1.0")
+st.sidebar.markdown("---")
+
 page = st.sidebar.radio(
-    "Pilih Halaman:",
-    ["🏠 Home", "🤖 Deteksi Penyakit (Teachable Machine)"],
+    "Navigasi Utama",
+    ["🏠 Home", "🤖 Teachable Machine Detector"],
 )
 
 st.sidebar.markdown("---")
-st.sidebar.info(
-    "**Sistem Klasifikasi Penyakit Apel**\n"
-    "Berbasis Transfer Learning MobileNetV2 & Streamlit Framework."
+st.sidebar.markdown(
+    """
+    <div style='font-size: 12px; color: #64748B;'>
+        <b>Arsitektur Model:</b> MobileNetV2<br>
+        <b>Confidence Threshold:</b> 60.0%<br>
+        <b>Framework:</b> TensorFlow & Streamlit
+    </div>
+    """,
+    unsafe_allow_html=True,
 )
 
 # ------------------------------------------------------------------------------
 # HALAMAN 1: HOME
 # ------------------------------------------------------------------------------
 if page == "🏠 Home":
-    st.title("🍎 Sistem Deteksi Penyakit Buah Apel Berbasis AI")
-    st.write(
-        "Selamat datang di platform klasifikasi citra penyakit buah apel otomatis berbasis pembelajaran dalam (*deep learning*)."
+    st.title("Sistem Klasifikasi Penyakit Buah Apel")
+    st.markdown(
+        "<p style='color: #475569; font-size: 16px; margin-top: -10px;'>"
+        "Platform identifikasi kondisi kesehatan buah berbasis kecerdasan buatan dan Convolutional Neural Network."
+        "</p>",
+        unsafe_allow_html=True,
     )
     st.markdown("---")
 
     # 1. Penjelasan Aplikasi
-    st.markdown('<div class="custom-card">', unsafe_allow_html=True)
-    st.subheader("📖 1. Penjelasan Aplikasi")
+    st.markdown('<div class="pro-card">', unsafe_allow_html=True)
+    st.markdown('<div class="pro-card-header"><h3>📖 Penjelasan Aplikasi</h3></div>', unsafe_allow_html=True)
     st.write(
         """
-        Aplikasi ini merupakan sistem pendeteksi dan pengklasifikasi penyakit pada buah apel (*Malus domestica*) secara otomatis. 
-        Sistem memanfaatkan teknologi kecerdasan buatan dengan metode **Deep Learning** menggunakan arsitektur **MobileNetV2** yang telah dioptimasi (*Transfer Learning*). 
-        
-        Melalui aplikasi web ini, pengguna cukup mengunggah foto buah apel, dan sistem akan menganalisis kondisi fisik buah secara *real-time* untuk mengidentifikasi apakah buah berada dalam kondisi **Sehat** atau terinfeksi salah satu dari **5 Jenis Penyakit/Hama Utama** (Antraknosa, Cacar Hitam, Busuk Hitam, Ulat Apel, atau Embun Tepung).
+        Aplikasi ini dirancang untuk mendiagnosa kondisi kesehatan buah apel (*Malus domestica*) secara otomatis menggunakan teknologi **Deep Learning**. 
+        Dengan menerapkan teknik **Transfer Learning** pada arsitektur **MobileNetV2**, sistem mampu menganalisis citra permukaan buah apel dan mengklasifikasikannya ke dalam **6 kategori** (1 kelas sehat dan 5 kelas infeksi penyakit/hama) secara presisi dan efisien.
         """
     )
     st.markdown("</div>", unsafe_allow_html=True)
 
     # 2. Tujuan Aplikasi
-    st.markdown('<div class="custom-card">', unsafe_allow_html=True)
-    st.subheader("🎯 2. Tujuan Aplikasi")
+    st.markdown('<div class="pro-card">', unsafe_allow_html=True)
+    st.markdown('<div class="pro-card-header"><h3>🎯 Tujuan Pengembangan</h3></div>', unsafe_allow_html=True)
     st.write(
         """
-        Adapun tujuan utama dari pengembangan aplikasi ini adalah:
-        - **Membantu Petani & Masyarakat:** Memudahkan proses identifikasi penyakit buah apel secara cepat dan akurat tanpa harus menunggu hadirnya penyuluh atau tenaga ahli di lapangan.
-        - **Mencegah Kesalahan Diagnosis:** Meminimalisir kesalahan identifikasi gejala penyakit yang sering kali mirip secara kasat mata, sehingga pemberian pestisida/penanganan menjadi lebih tepat sasaran.
-        - **Mencegah Prediksi Palsu (*False Positive*):** Dilengkapi dengan mekanisme *Confidence Thresholding* (60%) untuk menolak dan menyaring input gambar non-apel atau gambar berkualitas buruk.
-        - **Menyediakan Layanan Terbuka:** Menyajikan media diagnosa digital berbasis web yang interaktif, informatif, serta dapat diakses secara publik dan gratis 24/7.
+        - **Akurasi Diagnosa Dini:** Membantu petani dan pengelola kebun mengidentifikasi jenis penyakit pada buah apel secara akurat guna mencegah persebaran infeksi yang lebih luas.
+        - **Optimalisasi Penanganan:** Memberikan rujukan solusi dan penanganan yang tepat sasaran sesuai dengan jenis penyakit yang terdeteksi.
+        - **Validasi Input (*False-Positive Prevention*):** Menolak prediksi pada gambar non-apel atau gambar berkualitas buruk menggunakan mekanisme *Confidence Thresholding* 60%.
+        - **Aksesibilitas Tinggi:** Menyediakan sistem pakar berbasis web yang dapat diakses secara publik, cepat, dan responsif dari berbagai perangkat.
         """
     )
     st.markdown("</div>", unsafe_allow_html=True)
 
     # 3. Cara Penggunaan
-    st.markdown('<div class="custom-card">', unsafe_allow_html=True)
-    st.subheader("💡 3. Panduan & Cara Penggunaan")
-    st.write(
-        """
-        Langkah-langkah untuk melakukan diagnosa penyakit buah apel menggunakan aplikasi ini sangat mudah:
-        """
-    )
+    st.markdown('<div class="pro-card">', unsafe_allow_html=True)
+    st.markdown('<div class="pro-card-header"><h3>💡 Panduan Penggunaan</h3></div>', unsafe_allow_html=True)
 
     col_step1, col_step2, col_step3 = st.columns(3)
     with col_step1:
         st.markdown(
             """
-            <div class="info-card">
-                <h4>Langkah 1: Masuk Halaman</h4>
-                <p>Buka menu <b>🤖 Deteksi Penyakit (Teachable Machine)</b> pada bilah navigasi di sebelah kiri (sidebar).</p>
+            <div class="step-card">
+                <div class="step-number">1</div>
+                <h4 style="margin: 0; color: #0B2545;">Buka Detektor</h4>
+                <p style="font-size: 13px; color: #475569; margin-top: 8px;">Pilih menu <b>Teachable Machine Detector</b> pada bilah navigasi di sebelah kiri.</p>
             </div>
             """,
             unsafe_allow_html=True,
@@ -201,9 +245,10 @@ if page == "🏠 Home":
     with col_step2:
         st.markdown(
             """
-            <div class="info-card">
-                <h4>Langkah 2: Unggah Gambar</h4>
-                <p>Klik tombol <b>Browse files</b> pada panel sebelah kiri untuk memilih gambar buah apel yang ingin diperiksa (Format JPG/PNG).</p>
+            <div class="step-card">
+                <div class="step-number">2</div>
+                <h4 style="margin: 0; color: #0B2545;">Unggah Gambar</h4>
+                <p style="font-size: 13px; color: #475569; margin-top: 8px;">Unggah foto buah apel dengan format JPG atau PNG pada panel pengujian.</p>
             </div>
             """,
             unsafe_allow_html=True,
@@ -212,9 +257,10 @@ if page == "🏠 Home":
     with col_step3:
         st.markdown(
             """
-            <div class="info-card">
-                <h4>Langkah 3: Lihat Hasil</h4>
-                <p>Sistem akan menampilkan status diagnosa, tingkat keyakinan (confidence), bilah persentase probabilitas, serta solusi penanganannya pada panel kanan.</p>
+            <div class="step-card">
+                <div class="step-number">3</div>
+                <h4 style="margin: 0; color: #0B2545;">Hasil & Solusi</h4>
+                <p style="font-size: 13px; color: #475569; margin-top: 8px;">Sistem menampilkan hasil diagnosa, grafik probabilitas kelas, serta petunjuk penanganan.</p>
             </div>
             """,
             unsafe_allow_html=True,
@@ -223,12 +269,15 @@ if page == "🏠 Home":
     st.markdown("</div>", unsafe_allow_html=True)
 
 # ------------------------------------------------------------------------------
-# HALAMAN 2: DETEKSI PENYAKIT (TEACHABLE MACHINE LAYOUT)
+# HALAMAN 2: DETEKS PENYAKIT (TEACHABLE MACHINE LAYOUT)
 # ------------------------------------------------------------------------------
-elif page == "🤖 Deteksi Penyakit (Teachable Machine)":
-    st.title("🤖 Klasifikasi Penyakit Buah Apel (Real-time)")
-    st.write(
-        "Unggah gambar buah apel pada panel kiri untuk melihat estimasi klasifikasi dan persentase probabilitas pada panel kanan."
+elif page == "🤖 Teachable Machine Detector":
+    st.title("Klasifikasi Penyakit Buah Apel")
+    st.markdown(
+        "<p style='color: #475569; font-size: 15px; margin-top: -10px;'>"
+        "Modul diagnosa citra real-time dengan antarmuka dua panel."
+        "</p>",
+        unsafe_allow_html=True,
     )
     st.markdown("---")
 
@@ -237,32 +286,32 @@ elif page == "🤖 Deteksi Penyakit (Teachable Machine)":
 
     # -------------------------- KOLOM KIRI: INPUT --------------------------
     with col1:
-        st.markdown('<div class="custom-card">', unsafe_allow_html=True)
-        st.subheader("📷 Input Gambar")
+        st.markdown('<div class="pro-card">', unsafe_allow_html=True)
+        st.markdown('<div class="pro-card-header"><h3>📷 Input Gambar</h3></div>', unsafe_allow_html=True)
+        
         uploaded_file = st.file_uploader(
-            "Pilih file gambar buah apel (JPG, JPEG, PNG)...",
+            "Unggah berkas gambar buah apel (JPG, JPEG, PNG)...",
             type=["jpg", "jpeg", "png"],
         )
 
         if uploaded_file is not None:
             image = Image.open(uploaded_file)
-            st.image(image, caption="Gambar Input", use_container_width=True)
+            st.image(image, caption="Preview Gambar Input", use_container_width=True)
         else:
-            st.info("📌 Silakan unggah gambar buah apel untuk memulai analisa.")
+            st.info("Silakan unggah gambar buah apel untuk memulai proses klasifikasi.")
+        
         st.markdown("</div>", unsafe_allow_html=True)
 
     # -------------------------- KOLOM KANAN: OUTPUT --------------------------
     with col2:
-        st.markdown('<div class="custom-card">', unsafe_allow_html=True)
-        st.subheader("📊 Output Prediksi (Output Class)")
+        st.markdown('<div class="pro-card">', unsafe_allow_html=True)
+        st.markdown('<div class="pro-card-header"><h3>📊 Hasil Diagnosa & Probabilitas</h3></div>', unsafe_allow_html=True)
 
         if uploaded_file is not None:
             if model is None:
-                st.error(
-                    "❌ File model `apple_disease_model.h5` tidak ditemukan pada direktori utama."
-                )
+                st.error("File model `apple_disease_model.h5` tidak ditemukan pada direktori utama.")
             else:
-                with st.spinner("🔍 Menganalisis gambar..."):
+                with st.spinner("Memproses & Menganalisis Gambar..."):
                     processed_img = preprocess_image(image)
                     predictions = model.predict(processed_img)[0]
                     top_idx = int(np.argmax(predictions))
@@ -277,11 +326,11 @@ elif page == "🤖 Deteksi Penyakit (Teachable Machine)":
                     st.error("❌ **Hasil Diagnosa: Tidak Terdeteksi**")
                     st.warning(
                         f"Tingkat keyakinan tertinggi hanya **{confidence:.2f}%** (di bawah batas minimal 60.0%). "
-                        "Gambar teridentifikasi bukan sebagai buah apel yang valid atau kualitas gambar terlalu buram."
+                        "Objek dalam gambar tidak dikenali sebagai buah apel yang valid atau citra terlalu buram."
                     )
 
                     st.markdown("---")
-                    st.write("**Probabilitas Seluruh Kelas:**")
+                    st.markdown("<h4 style='font-size: 15px; color: #0B2545;'>Probabilitas Kelas:</h4>", unsafe_allow_html=True)
                     for c_name in CLASS_NAMES:
                         st.write(f"**{c_name}**: 0.0%")
                         st.progress(0.0)
@@ -292,9 +341,9 @@ elif page == "🤖 Deteksi Penyakit (Teachable Machine)":
                     st.info(f"🎯 **Tingkat Keyakinan (Confidence):** {confidence:.2f}%")
 
                     st.markdown("---")
-                    st.write("**Probabilitas Seluruh Kelas:**")
+                    st.markdown("<h4 style='font-size: 15px; color: #0B2545;'>Probabilitas Kelas:</h4>", unsafe_allow_html=True)
 
-                    # Display Progress Bars per Class ala Teachable Machine
+                    # Display Progress Bars per Class
                     for i, c_name in enumerate(CLASS_NAMES):
                         prob = float(predictions[i])
                         prob_percent = prob * 100
@@ -305,16 +354,12 @@ elif page == "🤖 Deteksi Penyakit (Teachable Machine)":
                     st.markdown("---")
                     detail = CLASS_DETAILS.get(predicted_class, {})
                     if detail:
-                        with st.expander(
-                            "📌 Deskripsi & Solusi Penanganan", expanded=True
-                        ):
+                        with st.expander("📌 Detail Penyakit & Tindakan Penanganan", expanded=True):
                             st.markdown(f"**{detail.get('title', '')}**")
                             st.write(detail.get("desc", ""))
-                            st.markdown("**Langkah Penanganan:**")
+                            st.markdown("**Solusi Penanganan:**")
                             st.write(detail.get("prevention", ""))
         else:
-            st.write(
-                "Tampilan probabilitas dan diagnosa penyakit akan langsung muncul di sini setelah gambar diunggah."
-            )
+            st.write("Hasil prediksi dan distribusi probabilitas akan ditampilkan di sini secara otomatis setelah gambar diunggah.")
 
         st.markdown("</div>", unsafe_allow_html=True)
