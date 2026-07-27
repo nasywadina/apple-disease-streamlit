@@ -96,7 +96,7 @@ st.markdown(
 
     /* Expander Text Fix */
     .streamlit-expanderHeader {
-        color: #FFFFFF !important;
+        color: #0F172A !important;
         font-weight: 600 !important;
     }
     </style>
