@@ -111,7 +111,7 @@ if uploaded_file is not None:
         # ======================================================================
         # PENETAPAN THRESHOLDING
         # ======================================================================
-        CONFIDENCE_THRESHOLD = 60.0  # Batas minimal keyakinan (60%)
+        CONFIDENCE_THRESHOLD = 70.0  # Batas minimal keyakinan (70%)
 
         if confidence < CONFIDENCE_THRESHOLD:
             # ❌ JIKA DI BAWAH THRESHOLD
@@ -127,7 +127,7 @@ if uploaded_file is not None:
             prob_dict = {class_name: 0.0 for class_name in CLASS_NAMES}
 
         else:
-            # ✅ JIKA MEMENUHI THRESHOLD (>= 60%)
+            # ✅ JIKA MEMENUHI THRESHOLD (>= 70%)
             st.success(f"**Hasil Diagnosa:** {predicted_class}")
             st.info(f"**Tingkat Keyakinan (Confidence):** {confidence:.2f}%")
 
