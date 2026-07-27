@@ -111,7 +111,7 @@ if uploaded_file is not None:
         # ======================================================================
         # TAMBAHKAN THRESHOLDING DI SINI
         # ======================================================================
-        CONFIDENCE_THRESHOLD = 60.0  # Batas minimal keyakinan (60%)
+        CONFIDENCE_THRESHOLD = 70.0  # Batas minimal keyakinan (70%)
 
         if confidence < CONFIDENCE_THRESHOLD:
             # Jika tingkat keyakinan di bawah 60%
