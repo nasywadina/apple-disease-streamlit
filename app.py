@@ -31,6 +31,12 @@ st.markdown(
         background-color: #F8FAFC !important;
     }
 
+    /* Force Sidebar Style */
+    section[data-testid="stSidebar"] {
+        background-color: #FFFFFF !important;
+        border-right: 1px solid #E2E8F0 !important;
+    }
+    
     }
 
     /* Headings Kontras Tinggi */
@@ -44,16 +50,6 @@ st.markdown(
     }
     p, li, span, label {
         color: #334155 !important;
-    }
-
-    /* Card Styling dengan Kontras Ekstra & Shadow Lembot */
-    .pro-card {
-        background-color: #FFFFFF !important;
-        padding: 24px;
-        border-radius: 12px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-        margin-bottom: 20px;
-        border: 1px solid #E2E8F0;
     }
 
     .pro-card-header {
