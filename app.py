@@ -30,11 +30,7 @@ st.markdown(
     .stApp {
         background-color: #F8FAFC !important;
     }
-    
-    /* Force Sidebar Style */
-    section[data-testid="stSidebar"] {
-        background-color: #FFFFFF !important;
-        border-right: 1px solid #E2E8F0 !important;
+
     }
 
     /* Headings Kontras Tinggi */
