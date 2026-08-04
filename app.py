@@ -188,7 +188,7 @@ st.sidebar.markdown(
     """
     <div style='font-size: 12px; color: #64748B;'>
         <b>Model:</b> MobileNetV2<br>
-        <b>Batas Keyakinan:</b> 60.0%<br>
+        <b>Batas Keyakinan:</b> 70.0%<br>
         <b>Status Sistem:</b> Aktif
     </div>
     """,
