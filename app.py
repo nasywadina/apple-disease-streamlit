@@ -229,7 +229,7 @@ if page == "🏠 Home":
         """
         - **Membantu Petani & Pengelola Kebun:** Mempercepat proses diagnosa penyakit di lapangan tanpa harus menunggu ahli.
         - **Mencegah Kerugian:** Memberikan saran penanganan awal yang tepat untuk mencegah penularan penyakit ke seluruh kebun.
-        - **Penyaringan Gambar Cerdas:** Dilengkapi *Confidence Threshold* 60% untuk menolak gambar non-apel atau gambar yang terlalu buram.
+        - **Penyaringan Gambar Cerdas:** Dilengkapi *Confidence Threshold* 70% untuk menolak gambar non-apel atau gambar yang terlalu buram.
         """
     )
     st.markdown("</div>", unsafe_allow_html=True)
@@ -337,13 +337,13 @@ elif page == "🤖 Deteksi Penyakit":
                     predicted_class = CLASS_NAMES[top_idx]
                     confidence = float(predictions[top_idx]) * 100
 
-                CONFIDENCE_THRESHOLD = 60.0
+                CONFIDENCE_THRESHOLD = 70.0
 
                 if confidence < CONFIDENCE_THRESHOLD:
-                    # KONDISI TIDAK TERDETEKSI (< 60%)
+                    # KONDISI TIDAK TERDETEKSI (< 70%)
                     st.error("❌ **Hasil Diagnosa: Tidak Terdeteksi**")
                     st.warning(
-                        f"Keyakinan tertinggi hanya **{confidence:.2f}%** (di bawah syarat 60.0%). "
+                        f"Keyakinan tertinggi hanya **{confidence:.2f}%** (di bawah syarat 70.0%). "
                         "Gambar tidak dikenali sebagai buah apel yang valid."
                     )
 
@@ -357,7 +357,7 @@ elif page == "🤖 Deteksi Penyakit":
                         st.progress(0.0)
 
                 else:
-                    # KONDISI TERDETEKSI (>= 60%)
+                    # KONDISI TERDETEKSI (>= 70%)
                     st.success(f"🏆 **Hasil Diagnosa: {predicted_class}**")
                     st.info(f"🎯 **Confidence:** {confidence:.2f}%")
 
