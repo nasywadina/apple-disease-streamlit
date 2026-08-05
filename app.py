@@ -580,7 +580,9 @@ with st.container(border=True):
     if image_source is not None:
         st.markdown("---")
         st.markdown("##### 🖼️ Preview Gambar")
-        st.image(image_source, use_container_width=True, caption="Objek Terpilih")
+        prev_col1, prev_col2, prev_col3 = st.columns([1, 1.4, 1])
+        with prev_col2:
+            st.image(image_source, use_container_width=True, caption="Objek Terpilih")
 
 st.markdown("<br>", unsafe_allow_html=True)
 
