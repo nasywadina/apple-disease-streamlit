@@ -42,7 +42,7 @@ st.markdown(
 
     .stApp{background-color:var(--cream) !important;}
     #MainMenu, footer, header{visibility:hidden;}
-    .block-container{padding-top:0 !important; padding-bottom:0 !important; max-width:100% !important;}
+    .block-container{padding-top:0 !important; padding-bottom:0 !important; padding-left:48px !important; padding-right:48px !important; max-width:100% !important;}
 
     /* ---------- NAVBAR ---------- */
     .navbar{
@@ -72,8 +72,8 @@ st.markdown(
     .seed-divider span:nth-child(3n){background:var(--apple-red); opacity:0.4;}
 
     /* ---------- SECTION WRAPPERS ---------- */
-    .section{padding:78px 48px;}
-    .section-alt{background:var(--cream-alt);}
+    .section{padding:78px 0;}
+    .section-alt{background:var(--cream-alt); margin:0 -48px; padding-left:48px; padding-right:48px;}
     .eyebrow{display:inline-flex; align-items:center; gap:8px; color:var(--apple-red);
         font-weight:700; font-size:0.78rem; letter-spacing:0.12em; text-transform:uppercase;
         background:var(--apple-red-soft); padding:6px 14px; border-radius:999px; margin-bottom:18px;}
@@ -82,7 +82,7 @@ st.markdown(
     .center{text-align:center; margin-left:auto; margin-right:auto;}
 
     /* ---------- HERO ---------- */
-    .hero-wrap{display:flex; align-items:center; gap:56px; padding:64px 48px 20px 48px; flex-wrap:wrap;}
+    .hero-wrap{display:flex; align-items:center; gap:56px; padding:64px 0 20px 0; flex-wrap:wrap;}
     .hero-text{flex:1 1 420px; min-width:320px;}
     .hero-title{font-size:3.1rem; line-height:1.08; font-weight:600; color:var(--charcoal); margin:14px 0 18px 0;}
     .hero-title .accent{color:var(--apple-red);}
@@ -159,7 +159,7 @@ st.markdown(
     .stProgress > div > div > div > div{background-color:var(--apple-red) !important; border-radius:8px;}
 
     /* ---------- FOOTER ---------- */
-    .footer{padding:36px 48px; text-align:center; color:var(--stone); font-size:0.85rem; border-top:1px solid var(--line);}
+    .footer{padding:36px 0; text-align:center; color:var(--stone); font-size:0.85rem; border-top:1px solid var(--line);}
     </style>
 """,
     unsafe_allow_html=True,
@@ -312,7 +312,7 @@ seed_divider()
 # ------------------------------------------------------------------------------
 # 6. TENTANG SISTEM
 # ------------------------------------------------------------------------------
-st.markdown('<div class="section" id="tentang">', unsafe_allow_html=True)
+st.markdown('<div id="tentang" style="padding-top:78px;"></div>', unsafe_allow_html=True)
 st.markdown(
     """
     <div class="center" style="max-width:680px;">
@@ -324,19 +324,19 @@ st.markdown(
         </div>
     </div>
     <br>
-    <div class="grid grid-2">
-        <div class="card">
-            <div style="font-size:1.6rem;margin-bottom:10px;">🎯</div>
-            <div class="tech-title">Misi Kami</div>
-            <div class="tech-desc" style="margin-bottom:6px;">
-                Membantu petani dan konsumen apel mengenali kondisi buah secara objektif
-                dan efisien, sehingga penanganan penyakit dapat dilakukan lebih cepat.
-            </div>
-            <div class="mission-check"><span class="dot">✓</span> Akurasi model teruji 86.67%</div>
-            <div class="mission-check"><span class="dot">✓</span> Hasil analisis real-time</div>
-            <div class="mission-check"><span class="dot">✓</span> Berbasis web, tanpa instalasi tambahan</div>
+    <div class="card">
+        <div style="font-size:1.6rem;margin-bottom:10px;">🎯</div>
+        <div class="tech-title">Misi Kami</div>
+        <div class="tech-desc" style="margin-bottom:6px;">
+            Membantu petani dan konsumen apel mengenali kondisi buah secara objektif
+            dan efisien, sehingga penanganan penyakit dapat dilakukan lebih cepat.
         </div>
-        <div class="grid grid-2" style="gap:16px;">
+        <div class="mission-check"><span class="dot">✓</span> Akurasi model teruji 86.67%</div>
+        <div class="mission-check"><span class="dot">✓</span> Hasil analisis real-time</div>
+        <div class="mission-check"><span class="dot">✓</span> Berbasis web, tanpa instalasi tambahan</div>
+    </div>
+    <br>
+    <div class="tech-title" style="margin-bottom:2px;">6 Kategori Klasifikasi</div>
     """,
     unsafe_allow_html=True,
 )
@@ -371,166 +371,166 @@ for i, (cname, cat) in enumerate(class_layout):
             unsafe_allow_html=True,
         )
 
-st.markdown("</div></div></div>", unsafe_allow_html=True)
+st.markdown('<div style="padding-bottom:78px;"></div>', unsafe_allow_html=True)
 seed_divider()
 
 # ------------------------------------------------------------------------------
 # 7. TECHNOLOGY STACK
 # ------------------------------------------------------------------------------
-st.markdown('<div class="section section-alt" id="teknologi">', unsafe_allow_html=True)
 st.markdown(
     """
-    <div class="center" style="max-width:680px;">
-        <div class="eyebrow" style="margin-left:auto;margin-right:auto;">Technology Stack</div>
-        <div class="section-title">Teknologi Canggih</div>
-        <div class="section-sub center">Dibangun dengan teknologi terkini dalam bidang Machine Learning dan Web Development.</div>
-    </div>
-    <br>
-    <div class="grid grid-3">
-        <div class="card">
-            <div class="tech-icon" style="background:#B3261E;">🧠</div>
-            <div class="tech-title">TensorFlow</div>
-            <div class="tech-desc">Framework Deep Learning untuk membangun dan melatih model Convolutional Neural Network (CNN).</div>
-            <span class="tag" style="background:var(--apple-red-soft);color:var(--apple-red-dark);">Deep Learning</span>
+    <div class="section section-alt" id="teknologi">
+        <div class="center" style="max-width:680px;">
+            <div class="eyebrow" style="margin-left:auto;margin-right:auto;">Technology Stack</div>
+            <div class="section-title">Teknologi Canggih</div>
+            <div class="section-sub center">Dibangun dengan teknologi terkini dalam bidang Machine Learning dan Web Development.</div>
         </div>
-        <div class="card">
-            <div class="tech-icon" style="background:#26211C;">🎈</div>
-            <div class="tech-title">Streamlit</div>
-            <div class="tech-desc">Framework web Python yang ringan dan interaktif untuk membangun antarmuka aplikasi klasifikasi.</div>
-            <span class="tag" style="background:#EAE6E0;color:var(--charcoal);">Frontend & Backend</span>
-        </div>
-        <div class="card">
-            <div class="tech-icon" style="background:#2F7A4B;">🧩</div>
-            <div class="tech-title">MobileNetV2</div>
-            <div class="tech-desc">Arsitektur CNN ringan berbasis Transfer Learning dengan multiple layers untuk ekstraksi fitur visual.</div>
-            <span class="tag" style="background:var(--leaf-green-soft);color:var(--leaf-green);">AI Model</span>
+        <br>
+        <div class="grid grid-3">
+            <div class="card">
+                <div class="tech-icon" style="background:#B3261E;">🧠</div>
+                <div class="tech-title">TensorFlow</div>
+                <div class="tech-desc">Framework Deep Learning untuk membangun dan melatih model Convolutional Neural Network (CNN).</div>
+                <span class="tag" style="background:var(--apple-red-soft);color:var(--apple-red-dark);">Deep Learning</span>
+            </div>
+            <div class="card">
+                <div class="tech-icon" style="background:#26211C;">🎈</div>
+                <div class="tech-title">Streamlit</div>
+                <div class="tech-desc">Framework web Python yang ringan dan interaktif untuk membangun antarmuka aplikasi klasifikasi.</div>
+                <span class="tag" style="background:#EAE6E0;color:var(--charcoal);">Frontend & Backend</span>
+            </div>
+            <div class="card">
+                <div class="tech-icon" style="background:#2F7A4B;">🧩</div>
+                <div class="tech-title">MobileNetV2</div>
+                <div class="tech-desc">Arsitektur CNN ringan berbasis Transfer Learning dengan multiple layers untuk ekstraksi fitur visual.</div>
+                <span class="tag" style="background:var(--leaf-green-soft);color:var(--leaf-green);">AI Model</span>
+            </div>
         </div>
     </div>
     """,
     unsafe_allow_html=True,
 )
-st.markdown("</div>", unsafe_allow_html=True)
 
 # ------------------------------------------------------------------------------
 # 8. ARSITEKTUR MODEL
 # ------------------------------------------------------------------------------
-st.markdown('<div class="section">', unsafe_allow_html=True)
 st.markdown(
     """
-    <div class="card">
-        <div class="section-title center" style="font-size:1.5rem;">Arsitektur Model</div>
-        <br>
-        <div style="display:grid; grid-template-columns:1fr auto 1fr auto 1fr auto 1fr; align-items:center; gap:6px;">
-            <div class="arch-step">
-                <div class="arch-icon" style="background:#B3261E;">🖼️</div>
-                <div class="arch-title">Input Layer</div>
-                <div class="arch-sub">224×224 RGB</div>
-            </div>
-            <div class="arch-arrow">→</div>
-            <div class="arch-step">
-                <div class="arch-icon" style="background:#8C1D17;">🧩</div>
-                <div class="arch-title">MobileNetV2 Base</div>
-                <div class="arch-sub">Feature Extraction</div>
-            </div>
-            <div class="arch-arrow">→</div>
-            <div class="arch-step">
-                <div class="arch-icon" style="background:#2F7A4B;">📉</div>
-                <div class="arch-title">Global Pooling</div>
-                <div class="arch-sub">Dimension Reduction</div>
-            </div>
-            <div class="arch-arrow">→</div>
-            <div class="arch-step">
-                <div class="arch-icon" style="background:#D79A2C;">🎯</div>
-                <div class="arch-title">Dense Layers</div>
-                <div class="arch-sub">6 Classes Output</div>
+    <div class="section">
+        <div class="card">
+            <div class="section-title center" style="font-size:1.5rem;">Arsitektur Model</div>
+            <br>
+            <div style="display:grid; grid-template-columns:1fr auto 1fr auto 1fr auto 1fr; align-items:center; gap:6px;">
+                <div class="arch-step">
+                    <div class="arch-icon" style="background:#B3261E;">🖼️</div>
+                    <div class="arch-title">Input Layer</div>
+                    <div class="arch-sub">224×224 RGB</div>
+                </div>
+                <div class="arch-arrow">→</div>
+                <div class="arch-step">
+                    <div class="arch-icon" style="background:#8C1D17;">🧩</div>
+                    <div class="arch-title">MobileNetV2 Base</div>
+                    <div class="arch-sub">Feature Extraction</div>
+                </div>
+                <div class="arch-arrow">→</div>
+                <div class="arch-step">
+                    <div class="arch-icon" style="background:#2F7A4B;">📉</div>
+                    <div class="arch-title">Global Pooling</div>
+                    <div class="arch-sub">Dimension Reduction</div>
+                </div>
+                <div class="arch-arrow">→</div>
+                <div class="arch-step">
+                    <div class="arch-icon" style="background:#D79A2C;">🎯</div>
+                    <div class="arch-title">Dense Layers</div>
+                    <div class="arch-sub">6 Classes Output</div>
+                </div>
             </div>
         </div>
     </div>
     """,
     unsafe_allow_html=True,
 )
-st.markdown("</div>", unsafe_allow_html=True)
 seed_divider()
 
 # ------------------------------------------------------------------------------
 # 9. FITUR UNGGULAN
 # ------------------------------------------------------------------------------
-st.markdown('<div class="section section-alt" id="fitur">', unsafe_allow_html=True)
 st.markdown(
     """
-    <div class="center" style="max-width:680px;">
-        <div class="eyebrow" style="margin-left:auto;margin-right:auto;">Features</div>
-        <div class="section-title">Fitur Unggulan</div>
-        <div class="section-sub center">Berbagai fitur yang membuat sistem ini praktis digunakan untuk klasifikasi penyakit apel.</div>
-    </div>
-    <br>
-    <div class="grid grid-4">
-        <div class="card feature-card">
-            <div class="feature-icon" style="background:#B3261E;">⚡</div>
-            <div class="tech-title" style="font-size:0.98rem;">Real-time</div>
-            <div class="tech-desc">Hasil klasifikasi tampil langsung setelah gambar diunggah.</div>
+    <div class="section section-alt" id="fitur">
+        <div class="center" style="max-width:680px;">
+            <div class="eyebrow" style="margin-left:auto;margin-right:auto;">Features</div>
+            <div class="section-title">Fitur Unggulan</div>
+            <div class="section-sub center">Berbagai fitur yang membuat sistem ini praktis digunakan untuk klasifikasi penyakit apel.</div>
         </div>
-        <div class="card feature-card">
-            <div class="feature-icon" style="background:#2F7A4B;">📈</div>
-            <div class="tech-title" style="font-size:0.98rem;">Akurasi Tinggi</div>
-            <div class="tech-desc">Model teruji dengan akurasi 86.67% pada data pengujian.</div>
-        </div>
-        <div class="card feature-card">
-            <div class="feature-icon" style="background:#D79A2C;">📱</div>
-            <div class="tech-title" style="font-size:0.98rem;">Responsive</div>
-            <div class="tech-desc">Dapat diakses dari desktop maupun perangkat mobile.</div>
-        </div>
-        <div class="card feature-card">
-            <div class="feature-icon" style="background:#26211C;">🔒</div>
-            <div class="tech-title" style="font-size:0.98rem;">Privasi Terjaga</div>
-            <div class="tech-desc">Gambar diproses untuk analisis dan tidak disimpan permanen di server.</div>
+        <br>
+        <div class="grid grid-4">
+            <div class="card feature-card">
+                <div class="feature-icon" style="background:#B3261E;">⚡</div>
+                <div class="tech-title" style="font-size:0.98rem;">Real-time</div>
+                <div class="tech-desc">Hasil klasifikasi tampil langsung setelah gambar diunggah.</div>
+            </div>
+            <div class="card feature-card">
+                <div class="feature-icon" style="background:#2F7A4B;">📈</div>
+                <div class="tech-title" style="font-size:0.98rem;">Akurasi Tinggi</div>
+                <div class="tech-desc">Model teruji dengan akurasi 86.67% pada data pengujian.</div>
+            </div>
+            <div class="card feature-card">
+                <div class="feature-icon" style="background:#D79A2C;">📱</div>
+                <div class="tech-title" style="font-size:0.98rem;">Responsive</div>
+                <div class="tech-desc">Dapat diakses dari desktop maupun perangkat mobile.</div>
+            </div>
+            <div class="card feature-card">
+                <div class="feature-icon" style="background:#26211C;">🔒</div>
+                <div class="tech-title" style="font-size:0.98rem;">Privasi Terjaga</div>
+                <div class="tech-desc">Gambar diproses untuk analisis dan tidak disimpan permanen di server.</div>
+            </div>
         </div>
     </div>
     """,
     unsafe_allow_html=True,
 )
-st.markdown("</div>", unsafe_allow_html=True)
 
 # ------------------------------------------------------------------------------
 # 10. CARA KERJA
 # ------------------------------------------------------------------------------
-st.markdown('<div class="section">', unsafe_allow_html=True)
 st.markdown(
     """
-    <div class="section-title center">Cara Kerja</div>
-    <br>
-    <div class="grid grid-4">
-        <div class="flow-step">
-            <div class="flow-num">1</div>
-            <div class="flow-title">Upload Gambar</div>
-            <div class="flow-sub">Pilih atau unggah foto buah apel yang ingin dianalisis.</div>
-        </div>
-        <div class="flow-step">
-            <div class="flow-num">2</div>
-            <div class="flow-title">AI Analysis</div>
-            <div class="flow-sub">Model CNN menganalisis fitur visual pada gambar.</div>
-        </div>
-        <div class="flow-step">
-            <div class="flow-num">3</div>
-            <div class="flow-title">Classification</div>
-            <div class="flow-sub">Sistem mengklasifikasikan kondisi buah ke 6 kategori.</div>
-        </div>
-        <div class="flow-step">
-            <div class="flow-num">4</div>
-            <div class="flow-title">Get Results</div>
-            <div class="flow-sub">Terima hasil diagnosa lengkap dengan langkah penanganan.</div>
+    <div class="section">
+        <div class="section-title center">Cara Kerja</div>
+        <br>
+        <div class="grid grid-4">
+            <div class="flow-step">
+                <div class="flow-num">1</div>
+                <div class="flow-title">Upload Gambar</div>
+                <div class="flow-sub">Pilih atau unggah foto buah apel yang ingin dianalisis.</div>
+            </div>
+            <div class="flow-step">
+                <div class="flow-num">2</div>
+                <div class="flow-title">AI Analysis</div>
+                <div class="flow-sub">Model CNN menganalisis fitur visual pada gambar.</div>
+            </div>
+            <div class="flow-step">
+                <div class="flow-num">3</div>
+                <div class="flow-title">Classification</div>
+                <div class="flow-sub">Sistem mengklasifikasikan kondisi buah ke 6 kategori.</div>
+            </div>
+            <div class="flow-step">
+                <div class="flow-num">4</div>
+                <div class="flow-title">Get Results</div>
+                <div class="flow-sub">Terima hasil diagnosa lengkap dengan langkah penanganan.</div>
+            </div>
         </div>
     </div>
     """,
     unsafe_allow_html=True,
 )
-st.markdown("</div>", unsafe_allow_html=True)
 seed_divider()
 
 # ------------------------------------------------------------------------------
 # 11. COBA SEKARANG — FUNGSI KLASIFIKASI ASLI (UPLOAD / KAMERA)
 # ------------------------------------------------------------------------------
-st.markdown('<div class="section section-alt" id="coba">', unsafe_allow_html=True)
+st.markdown('<div id="coba" style="padding-top:78px;"></div>', unsafe_allow_html=True)
 st.markdown(
     """
     <div class="center" style="max-width:680px;">
@@ -665,8 +665,7 @@ if image_source is not None:
 else:
     st.write("Silakan masukkan gambar di bagian atas. Hasil analisis lengkap akan ditampilkan secara otomatis pada bagian ini.")
 
-st.markdown("</div>", unsafe_allow_html=True)
-st.markdown("</div>", unsafe_allow_html=True)
+st.markdown('<div style="padding-bottom:78px;"></div>', unsafe_allow_html=True)
 
 # ------------------------------------------------------------------------------
 # 12. FOOTER
