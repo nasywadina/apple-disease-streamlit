@@ -46,11 +46,12 @@ st.markdown(
 
     /* ---------- NAVBAR ---------- */
     .navbar{
-        position:sticky; top:0; z-index:999;
+        position:fixed; top:0; left:0; right:0; z-index:99999;
         display:flex; align-items:center; justify-content:space-between;
-        padding:16px 48px; background:rgba(255,251,245,0.92);
+        padding:16px 48px; background:rgba(255,251,245,0.96);
         backdrop-filter:blur(6px); border-bottom:1px solid var(--line);
     }
+    .navbar-spacer{height:74px;}
     .nav-brand{display:flex; align-items:center; gap:10px; font-family:'Fraunces',serif;
         font-weight:600; font-size:1.25rem; color:var(--charcoal);}
     .nav-brand .mark{width:34px; height:34px; border-radius:9px; background:var(--apple-red);
@@ -262,6 +263,7 @@ st.markdown(
         </div>
         <a class="nav-cta" href="#coba">Coba Sekarang</a>
     </div>
+    <div class="navbar-spacer"></div>
     <div id="home"></div>
     """,
     unsafe_allow_html=True,
