@@ -331,7 +331,7 @@ elif page == "🤖 Deteksi Penyakit":
             else:
                 with st.spinner("Menganalisis gambar..."):
                     processed_img = preprocess_image(image)
-                    predictions = model.predict(processed_img)[0]
+                    predictions = model(processed_img, training=False).numpy()[0]
                     top_idx = int(np.argmax(predictions))
 
                     predicted_class = CLASS_NAMES[top_idx]
