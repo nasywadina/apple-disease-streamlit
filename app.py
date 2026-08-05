@@ -107,6 +107,14 @@ st.markdown(
     /* ---------- CARDS ---------- */
     .card{background:#fff; border:1px solid var(--line); border-radius:16px; padding:26px;
         box-shadow:0 4px 14px -8px rgba(38,33,28,0.08);}
+
+    /* Kotak native st.container(border=True) — dipakai untuk area yang berisi widget
+       interaktif (upload/kamera/hasil), disamakan gayanya dengan .card */
+    div[data-testid="stVerticalBlockBorderWrapper"]{
+        border-radius:16px !important; border-color:var(--line) !important;
+        box-shadow:0 4px 14px -8px rgba(38,33,28,0.08);
+    }
+
     .grid{display:grid; gap:22px;}
     .grid-2{grid-template-columns:1.1fr 1fr;}
     .grid-3{grid-template-columns:repeat(3,1fr);}
@@ -544,126 +552,125 @@ st.markdown(
 )
 
 # --- 11a. Input Gambar ---
-st.markdown('<div class="card">', unsafe_allow_html=True)
-st.markdown("#### 📷 1. Input Gambar Buah Apel")
+with st.container(border=True):
+    st.markdown("#### 📷 1. Input Gambar Buah Apel")
 
-tab_upload, tab_camera = st.tabs(
-    ["📁 Upload Gambar (JPG/PNG)", "📸 Real-time Kamera (Webcam)"]
-)
-
-image_source = None
-
-with tab_upload:
-    uploaded_file = st.file_uploader(
-        "Unggah foto buah apel di sini...",
-        type=["jpg", "jpeg", "png"],
-        key="file_uploader",
+    tab_upload, tab_camera = st.tabs(
+        ["📁 Upload Gambar (JPG/PNG)", "📸 Real-time Kamera (Webcam)"]
     )
-    if uploaded_file is not None:
-        image_source = Image.open(uploaded_file)
 
-with tab_camera:
-    camera_file = st.camera_input(
-        "Arahkan kamera ke buah apel & ambil foto", key="camera_input"
-    )
-    if camera_file is not None:
-        image_source = Image.open(camera_file)
+    image_source = None
 
-if image_source is not None:
-    st.markdown("---")
-    st.markdown("##### 🖼️ Preview Gambar")
-    st.image(image_source, use_container_width=True, caption="Objek Terpilih")
+    with tab_upload:
+        uploaded_file = st.file_uploader(
+            "Unggah foto buah apel di sini...",
+            type=["jpg", "jpeg", "png"],
+            key="file_uploader",
+        )
+        if uploaded_file is not None:
+            image_source = Image.open(uploaded_file)
 
-st.markdown("</div>", unsafe_allow_html=True)
+    with tab_camera:
+        camera_file = st.camera_input(
+            "Arahkan kamera ke buah apel & ambil foto", key="camera_input"
+        )
+        if camera_file is not None:
+            image_source = Image.open(camera_file)
+
+    if image_source is not None:
+        st.markdown("---")
+        st.markdown("##### 🖼️ Preview Gambar")
+        st.image(image_source, use_container_width=True, caption="Objek Terpilih")
+
 st.markdown("<br>", unsafe_allow_html=True)
 
 # --- 11b. Hasil Diagnosa ---
-st.markdown('<div class="card">', unsafe_allow_html=True)
-st.markdown("#### 📊 2. Hasil Diagnosa AI")
+with st.container(border=True):
+    st.markdown("#### 📊 2. Hasil Diagnosa AI")
 
-if image_source is not None:
-    if model is None:
-        st.error("⚠️ Model `apple_disease_model.h5` tidak ditemukan pada direktori utama.")
-    else:
-        with st.spinner("Menganalisis gambar..."):
-            processed_img = preprocess_image(image_source)
-            predictions = model(processed_img, training=False).numpy()[0]
-            top_idx = int(np.argmax(predictions))
-
-            predicted_class = CLASS_NAMES[top_idx]
-            confidence = float(predictions[top_idx]) * 100
-
-        CONFIDENCE_THRESHOLD = 70.0
-
-        # --- KONDISI 1: TIDAK TERDETEKSI (< 70%) ---
-        if confidence < CONFIDENCE_THRESHOLD:
-            st.markdown(
-                f"""
-                <div class="badge-warning">
-                    <h3 style="margin:0;">❓ Status: Tidak Terdeteksi</h3>
-                    <p style="margin:5px 0 0 0;">Keyakinan terdeteksi hanya <b>{confidence:.1f}%</b> (di bawah syarat minimal 70.0%). Pastikan foto fokus dan merupakan buah apel yang valid.</p>
-                </div>
-                """,
-                unsafe_allow_html=True,
-            )
-
-            st.markdown("<br>", unsafe_allow_html=True)
-            st.markdown("**📈 Probabilitas Seluruh Kelas:**")
-            for c_name in CLASS_NAMES:
-                c1, c2 = st.columns([3, 1])
-                with c1:
-                    st.write(f"**{c_name}**")
-                with c2:
-                    st.write("0.0%")
-                st.progress(0.0)
-
-        # --- KONDISI 2: TERDETEKSI (>= 70%) ---
+    if image_source is not None:
+        if model is None:
+            st.error("⚠️ Model `apple_disease_model.h5` tidak ditemukan pada direktori utama.")
         else:
-            if predicted_class == "Healthy":
+            with st.spinner("Menganalisis gambar..."):
+                processed_img = preprocess_image(image_source)
+                predictions = model(processed_img, training=False).numpy()[0]
+                top_idx = int(np.argmax(predictions))
+
+                predicted_class = CLASS_NAMES[top_idx]
+                confidence = float(predictions[top_idx]) * 100
+
+            CONFIDENCE_THRESHOLD = 70.0
+
+            # --- KONDISI 1: TIDAK TERDETEKSI (< 70%) ---
+            if confidence < CONFIDENCE_THRESHOLD:
                 st.markdown(
                     f"""
-                    <div class="badge-success">
-                        <h3 style="margin:0;">✅ Status: {predicted_class} (Sehat)</h3>
-                        <p style="margin:5px 0 0 0;">Tingkat Akurasi / Confidence: <b>{confidence:.2f}%</b></p>
+                    <div class="badge-warning">
+                        <h3 style="margin:0;">❓ Status: Tidak Terdeteksi</h3>
+                        <p style="margin:5px 0 0 0;">Keyakinan terdeteksi hanya <b>{confidence:.1f}%</b> (di bawah syarat minimal 70.0%). Pastikan foto fokus dan merupakan buah apel yang valid.</p>
                     </div>
                     """,
                     unsafe_allow_html=True,
                 )
+
+                st.markdown("<br>", unsafe_allow_html=True)
+                st.markdown("**📈 Probabilitas Seluruh Kelas:**")
+                for c_name in CLASS_NAMES:
+                    c1, c2 = st.columns([3, 1])
+                    with c1:
+                        st.write(f"**{c_name}**")
+                    with c2:
+                        st.write("0.0%")
+                    st.progress(0.0)
+
+            # --- KONDISI 2: TERDETEKSI (>= 70%) ---
             else:
-                st.markdown(
-                    f"""
-                    <div class="badge-danger">
-                        <h3 style="margin:0;">⚠️ Status Terinfeksi: {predicted_class}</h3>
-                        <p style="margin:5px 0 0 0;">Tingkat Akurasi / Confidence: <b>{confidence:.2f}%</b></p>
-                    </div>
-                    """,
-                    unsafe_allow_html=True,
-                )
+                if predicted_class == "Healthy":
+                    st.markdown(
+                        f"""
+                        <div class="badge-success">
+                            <h3 style="margin:0;">✅ Status: {predicted_class} (Sehat)</h3>
+                            <p style="margin:5px 0 0 0;">Tingkat Akurasi / Confidence: <b>{confidence:.2f}%</b></p>
+                        </div>
+                        """,
+                        unsafe_allow_html=True,
+                    )
+                else:
+                    st.markdown(
+                        f"""
+                        <div class="badge-danger">
+                            <h3 style="margin:0;">⚠️ Status Terinfeksi: {predicted_class}</h3>
+                            <p style="margin:5px 0 0 0;">Tingkat Akurasi / Confidence: <b>{confidence:.2f}%</b></p>
+                        </div>
+                        """,
+                        unsafe_allow_html=True,
+                    )
 
-            st.markdown("<br>", unsafe_allow_html=True)
-            st.markdown("**📈 Persentase Probabilitas Semua Kelas:**")
-            for i, c_name in enumerate(CLASS_NAMES):
-                prob = float(predictions[i])
-                prob_percent = prob * 100
+                st.markdown("<br>", unsafe_allow_html=True)
+                st.markdown("**📈 Persentase Probabilitas Semua Kelas:**")
+                for i, c_name in enumerate(CLASS_NAMES):
+                    prob = float(predictions[i])
+                    prob_percent = prob * 100
 
-                col_label, col_val = st.columns([3, 1])
-                with col_label:
-                    st.write(f"**{c_name}**")
-                with col_val:
-                    st.write(f"**{prob_percent:.1f}%**")
+                    col_label, col_val = st.columns([3, 1])
+                    with col_label:
+                        st.write(f"**{c_name}**")
+                    with col_val:
+                        st.write(f"**{prob_percent:.1f}%**")
 
-                st.progress(prob)
+                    st.progress(prob)
 
-            # --- Detail Penyakit ---
-            detail = CLASS_DETAILS.get(predicted_class, {})
-            if detail:
-                st.markdown("---")
-                st.markdown("#### 📌 3. Detail Penyakit & Solusi Penanganan")
-                st.info(f"**{detail.get('title', '')}**\n\n{detail.get('desc', '')}")
-                st.success(f"**💡 Langkah Penanganan & Pencegahan:**\n\n{detail.get('prevention', '')}")
+                # --- Detail Penyakit ---
+                detail = CLASS_DETAILS.get(predicted_class, {})
+                if detail:
+                    st.markdown("---")
+                    st.markdown("#### 📌 3. Detail Penyakit & Solusi Penanganan")
+                    st.info(f"**{detail.get('title', '')}**\n\n{detail.get('desc', '')}")
+                    st.success(f"**💡 Langkah Penanganan & Pencegahan:**\n\n{detail.get('prevention', '')}")
 
-else:
-    st.write("Silakan masukkan gambar di bagian atas. Hasil analisis lengkap akan ditampilkan secara otomatis pada bagian ini.")
+    else:
+        st.write("Silakan masukkan gambar di bagian atas. Hasil analisis lengkap akan ditampilkan secara otomatis pada bagian ini.")
 
 st.markdown('<div style="padding-bottom:78px;"></div>', unsafe_allow_html=True)
 
