@@ -40,6 +40,10 @@ st.markdown(
     html, body, [class*="css"]{font-family:'Inter', sans-serif; color:var(--charcoal);}
     h1,h2,h3,.display{font-family:'Fraunces', serif;}
 
+    .stApp{background-color:var(--cream) !important;}
+    #MainMenu, footer, header{visibility:hidden;}
+    .block-container{padding-top:0 !important; padding-bottom:0 !important; max-width:100% !important;}
+
     /* ---------- NAVBAR ---------- */
     .navbar{
         position:sticky; top:0; z-index:999;
