@@ -4,7 +4,7 @@ import streamlit as st
 import tensorflow as tf
 
 # ------------------------------------------------------------------------------
-# CONFIGURASI HALAMAN
+# KONFIGURASI HALAMAN
 # ------------------------------------------------------------------------------
 st.set_page_config(
     page_title="Apple Disease Classifier",
@@ -14,7 +14,7 @@ st.set_page_config(
 )
 
 # ------------------------------------------------------------------------------
-# CUSTOM CSS (PERBAIKAN KONTRAS TEKS & OVERRIDE DARK/LIGHT MODE)
+# CUSTOM CSS (STYLE & TAMPILAN)
 # ------------------------------------------------------------------------------
 st.markdown(
     """
@@ -35,8 +35,6 @@ st.markdown(
     section[data-testid="stSidebar"] {
         background-color: #FFFFFF !important;
         border-right: 1px solid #E2E8F0 !important;
-    }
-    
     }
 
     /* Headings Kontras Tinggi */
@@ -165,8 +163,10 @@ CLASS_DETAILS = {
 
 
 def preprocess_image(img):
+    # Fix untuk gambar PNG dengan channel Alpha (RGBA) atau Grayscale
+    img = img.convert("RGB")
     img = img.resize((224, 224))
-    img_array = np.array(img) / 255.0
+    img_array = np.array(img, dtype=np.float32) / 255.0
     img_array = np.expand_dims(img_array, axis=0)
     return img_array
 
@@ -281,7 +281,7 @@ if page == "🏠 Home":
     st.markdown("</div>", unsafe_allow_html=True)
 
 # ------------------------------------------------------------------------------
-# HALAMAN 2: DETEKSI PENYAKIT (TEACHABLE MACHINE LAYOUT)
+# HALAMAN 2: DETEKSI PENYAKIT (THRESHOLDING 70%)
 # ------------------------------------------------------------------------------
 elif page == "🤖 Deteksi Penyakit":
     st.title("Deteksi & Klasifikasi Penyakit (Real-time)")
@@ -331,6 +331,7 @@ elif page == "🤖 Deteksi Penyakit":
             else:
                 with st.spinner("Menganalisis gambar..."):
                     processed_img = preprocess_image(image)
+                    # Menggunakan direct call agar aman dari Keras 3 / Streamlit Cloud
                     predictions = model(processed_img, training=False).numpy()[0]
                     top_idx = int(np.argmax(predictions))
 
@@ -344,7 +345,7 @@ elif page == "🤖 Deteksi Penyakit":
                     st.error("❌ **Hasil Diagnosa: Tidak Terdeteksi**")
                     st.warning(
                         f"Keyakinan tertinggi hanya **{confidence:.2f}%** (di bawah syarat 70.0%). "
-                        "Gambar tidak dikenali sebagai buah apel yang valid."
+                        "Gambar tidak dikenali sebagai buah apel yang valid atau kualitas citra terlalu buram."
                     )
 
                     st.markdown("---")
