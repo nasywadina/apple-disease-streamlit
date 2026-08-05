@@ -10,11 +10,11 @@ st.set_page_config(
     page_title="Apple Disease Classifier AI",
     page_icon="🍎",
     layout="centered",
-    initial_sidebar_state="collapsed",  # Menyembunyikan sidebar agar layar lebih fokus
+    initial_sidebar_state="collapsed",  # Tanpa sidebar agar fokus pada scroll halaman utama
 )
 
 # ------------------------------------------------------------------------------
-# 2. CUSTOM CSS UNTUK TAMPILAN MODERN & MENARIK
+# 2. CUSTOM CSS (VISUAL MODERN, BORDER CARD, & STYLING WARNA)
 # ------------------------------------------------------------------------------
 st.markdown(
     """
@@ -26,83 +26,51 @@ st.markdown(
     }
 
     .stApp {
-        background: linear-gradient(180deg, #F8FAFC 0%, #F1F5F9 100%) !important;
+        background-color: #F8FAFC !important;
     }
 
-    /* Main Container Styling */
-    .main-card {
+    /* Styling Card Utama */
+    .app-card {
         background-color: #FFFFFF;
         border-radius: 16px;
-        padding: 28px;
+        padding: 24px;
         margin-bottom: 24px;
         border: 1px solid #E2E8F0;
-        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
     }
 
-    /* Hero Banner Header */
-    .hero-header {
-        text-align: center;
-        padding: 20px 0 10px 0;
-    }
-    
-    .hero-header h1 {
-        font-size: 2.2rem !important;
-        font-weight: 800 !important;
-        color: #0F172A !important;
-        margin-bottom: 8px;
-    }
-
-    .hero-header p {
-        color: #64748B !important;
-        font-size: 1.05rem;
-    }
-
-    /* Section Titles */
-    .section-title {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        font-size: 1.25rem;
-        font-weight: 700;
-        color: #0F172A;
-        margin-bottom: 16px;
-    }
-
-    /* Custom Result Card */
-    .result-badge-success {
+    /* Badge Diagnosa */
+    .badge-success {
         background-color: #ECFDF5;
         border: 2px solid #10B981;
         border-radius: 12px;
-        padding: 16px 20px;
+        padding: 16px;
         color: #065F46;
-        margin-bottom: 20px;
     }
 
-    .result-badge-danger {
+    .badge-danger {
         background-color: #FEF2F2;
         border: 2px solid #EF4444;
         border-radius: 12px;
-        padding: 16px 20px;
+        padding: 16px;
         color: #991B1B;
-        margin-bottom: 20px;
     }
 
-    .result-badge-warning {
+    .badge-warning {
         background-color: #FFFBEB;
         border: 2px solid #F59E0B;
         border-radius: 12px;
-        padding: 16px 20px;
+        padding: 16px;
         color: #92400E;
-        margin-bottom: 20px;
     }
 
-    /* Progress bar custom styling */
+    /* Custom Progress Bar Color */
     .stProgress > div > div > div > div {
         background-color: #059669 !important;
-        border-radius: 10px;
+        border-radius: 8px;
     }
 
-    /* Hide default Streamlit padding */
+    /* Mengatur jarak top padding */
     .block-container {
         padding-top: 2rem !important;
         padding-bottom: 3rem !important;
@@ -179,51 +147,46 @@ def preprocess_image(img):
 
 
 # ------------------------------------------------------------------------------
-# 4. HEADER UTAMA (HERO BANNER)
+# 4. URUTAN 1: HEADER & PETUNJUK
 # ------------------------------------------------------------------------------
 st.markdown(
     """
-    <div class="hero-header">
-        <h1>🍎 Apple Health AI</h1>
-        <p>Deteksi Otomatis & Analisis Kesehatan Buah Apel Secara Real-Time</p>
+    <div style="text-align: center; margin-bottom: 20px;">
+        <h1 style="font-size: 2.2rem; font-weight: 800; color: #0F172A;">🍎 Apple Health AI System</h1>
+        <p style="color: #64748B; font-size: 1rem;">Sistem Deteksi Penyakit Buah Apel Berbasis Computer Vision (MobileNetV2)</p>
     </div>
 """,
     unsafe_allow_html=True,
 )
 
-# Panduan Ringkas & Interaktif
 with st.expander(
-    "💡 **Cara Menggunakan Aplikasi (Klik untuk Buka)**", expanded=False
+    "📖 **Petunjuk Penggunaan Aplikasi (Klik untuk Buka)**", expanded=False
 ):
     st.write(
         """
-    1. **Pilih Metode Input:** Gunakan kamera *real-time* atau unggah gambar buah apel dari galeri Anda.
-    2. **Analisis Otomatis:** Sistem AI akan memproses gambar dan menghitung tingkat kesehatan apel secara presisi.
-    3. **Lihat Solusi:** Jika terdeteksi penyakit, lihat petunjuk penanganan yang direkomendasikan ahli.
+        1. **Pilih Metode Input:** Gunakan opsi **Upload File** untuk memilih gambar dari galeri atau **Real-time Kamera** untuk mengambil foto langsung.
+        2. **Gunakan Gambar yang Jelas:** Pastikan pencahayaan cukup dan objek buah apel berada di tengah frame.
+        3. **Gulir (Scroll) ke Bawah:** Setelah gambar dimasukkan, hasil diagnosa, grafik probabilitas, dan solusi penanganan akan langsung ditampilkan di bagian bawah.
     """
     )
 
 st.markdown("<br>", unsafe_allow_html=True)
 
 # ------------------------------------------------------------------------------
-# 5. STEP 1: INPUT GAMBAR (UPLOAD & REALTIME CAMERA)
+# 5. URUTAN 2: INPUT GAMBAR (UPLOAD / CAMERA REALTIME)
 # ------------------------------------------------------------------------------
-st.markdown('<div class="main-card">', unsafe_allow_html=True)
-st.markdown(
-    '<div class="section-title">📸 <span>Pilih atau Ambil Foto Buah Apel</span></div>',
-    unsafe_allow_html=True,
-)
+st.markdown('<div class="app-card">', unsafe_allow_html=True)
+st.markdown("### 📷 **1. Input Gambar Buah Apel**")
 
-# Pilihan Tab untuk Pengalaman Pengguna yang Lebih Menarik
 tab_upload, tab_camera = st.tabs(
-    ["📁 Upload Gambar (Galeri)", "📷 Real-time Kamera (Webcam)"]
+    ["📁 Upload Gambar (JPG/PNG)", "📸 Real-time Kamera (Webcam)"]
 )
 
 image_source = None
 
 with tab_upload:
     uploaded_file = st.file_uploader(
-        "Unggah gambar apel di sini (JPG, JPEG, PNG)",
+        "Unggah foto buah apel di sini...",
         type=["jpg", "jpeg", "png"],
         key="file_uploader",
     )
@@ -237,32 +200,28 @@ with tab_camera:
     if camera_file is not None:
         image_source = Image.open(camera_file)
 
-# Tampilan Preview Gambar yang Diunggah/Diambil
 if image_source is not None:
     st.markdown("---")
-    st.markdown("##### 🖼️ Gambar yang Dipilih:")
+    st.markdown("##### 🖼️ **Preview Gambar:**")
     st.image(
-        image_source, use_container_width=True, caption="Objek Buah Apel"
+        image_source, use_container_width=True, caption="Objek Terpilih"
     )
 
 st.markdown("</div>", unsafe_allow_html=True)
 
 # ------------------------------------------------------------------------------
-# 6. STEP 2: HASIL DIAGNOSA & ANALISIS PROBABILITAS
+# 6. URUTAN 3 & 4: HASIL DIAGNOSA & DETAIL PROBABILITAS
 # ------------------------------------------------------------------------------
-st.markdown('<div class="main-card">', unsafe_allow_html=True)
-st.markdown(
-    '<div class="section-title">📊 <span>Hasil Analisis AI</span></div>',
-    unsafe_allow_html=True,
-)
+st.markdown('<div class="app-card">', unsafe_allow_html=True)
+st.markdown("### 📊 **2. Hasil Diagnosa AI**")
 
 if image_source is not None:
     if model is None:
         st.error(
-            "⚠️ Model AI `apple_disease_model.h5` tidak ditemukan. Pastikan file model sudah berada di folder proyek."
+            "⚠️ Model `apple_disease_model.h5` tidak ditemukan pada direktori utama."
         )
     else:
-        with st.spinner("⚡ AI sedang menganalisis tingkat kesehatan apel..."):
+        with st.spinner("Analyzing image..."):
             processed_img = preprocess_image(image_source)
             predictions = model(processed_img, training=False).numpy()[0]
             top_idx = int(np.argmax(predictions))
@@ -272,35 +231,35 @@ if image_source is not None:
 
         CONFIDENCE_THRESHOLD = 70.0
 
+        # --- CONDITION 1: UNKNOWN / LOW CONFIDENCE (< 70%) ---
         if confidence < CONFIDENCE_THRESHOLD:
-            # 1. KONDISI TIDAK TERDETEKSI (< 70%)
             st.markdown(
                 f"""
-                <div class="result-badge-warning">
-                    <h3 style="margin:0; color:#92400E;">❓ Tidak Terdeteksi Sebagai Apel Valid</h3>
-                    <p style="margin:5px 0 0 0;">Tingkat keyakinan tertinggi hanya <b>{confidence:.1f}%</b> (Di bawah standar minimal 70.0%). Pastikan objek adalah buah apel dengan pencahayaan yang jelas.</p>
+                <div class="badge-warning">
+                    <h3 style="margin:0;">❓ Status: Tidak Terdeteksi</h3>
+                    <p style="margin:5px 0 0 0;">Keyakinan terdeteksi hanya <b>{confidence:.1f}%</b> (Di bawah syarat minimal 70.0%). Pastikan foto fokus dan merupakan buah apel yang valid.</p>
                 </div>
             """,
                 unsafe_allow_html=True,
             )
 
-            st.markdown("#### 📈 Probabilitas Diagnosa:")
+            st.markdown("<br>#### 📈 Probabilitas Seluruh Kelas:", unsafe_allow_html=True)
             for c_name in CLASS_NAMES:
-                col_name, col_val = st.columns([3, 1])
-                with col_name:
+                c1, c2 = st.columns([3, 1])
+                with c1:
                     st.write(f"**{c_name}**")
-                with col_val:
+                with c2:
                     st.write("0.0%")
                 st.progress(0.0)
 
+        # --- CONDITION 2: SUCCESS DETECTED (>= 70%) ---
         else:
-            # 2. KONDISI TERDETEKSI (>= 70%)
             if predicted_class == "Healthy":
                 st.markdown(
                     f"""
-                    <div class="result-badge-success">
-                        <h3 style="margin:0; color:#065F46;">✅ Buah Apel Sehat (Healthy)</h3>
-                        <p style="margin:5px 0 0 0;">Tingkat Akurasi / Keyakinan AI: <b>{confidence:.2f}%</b></p>
+                    <div class="badge-success">
+                        <h3 style="margin:0;">✅ Status: {predicted_class} (Sehat)</h3>
+                        <p style="margin:5px 0 0 0;">Tingkat Akurasi / Confidence: <b>{confidence:.2f}%</b></p>
                     </div>
                 """,
                     unsafe_allow_html=True,
@@ -308,44 +267,46 @@ if image_source is not None:
             else:
                 st.markdown(
                     f"""
-                    <div class="result-badge-danger">
-                        <h3 style="margin:0; color:#991B1B;">⚠️ Terinfeksi: {predicted_class}</h3>
-                        <p style="margin:5px 0 0 0;">Tingkat Akurasi / Keyakinan AI: <b>{confidence:.2f}%</b></p>
+                    <div class="badge-danger">
+                        <h3 style="margin:0;">⚠️ Status Terinfeksi: {predicted_class}</h3>
+                        <p style="margin:5px 0 0 0;">Tingkat Akurasi / Confidence: <b>{confidence:.2f}%</b></p>
                     </div>
                 """,
                     unsafe_allow_html=True,
                 )
 
-            # Visualisasi Probabilitas Semua Kelas
-            st.markdown("#### 📈 Rincian Probabilitas Semua Kelas:")
-
+            st.markdown("<br>#### 📈 Persentase Probabilitas Semua Kelas:", unsafe_allow_html=True)
             for i, c_name in enumerate(CLASS_NAMES):
                 prob = float(predictions[i])
                 prob_percent = prob * 100
 
-                col_txt, col_pct = st.columns([3, 1])
-                with col_txt:
+                col_label, col_val = st.columns([3, 1])
+                with col_label:
                     st.write(f"**{c_name}**")
-                with col_pct:
+                with col_val:
                     st.write(f"**{prob_percent:.1f}%**")
 
                 st.progress(prob)
 
-            # Informasi Penyakit & Penanganan
+            # ------------------------------------------------------------------
+            # 7. URUTAN 5: PENJELASAN & PENANGANAN PENYAKIT (PALING BAWAH)
+            # ------------------------------------------------------------------
             detail = CLASS_DETAILS.get(predicted_class, {})
             if detail:
                 st.markdown("---")
-                st.markdown("### 📌 Penjelasan & Langkah Penanganan")
+                st.markdown("### 📌 **3. Detail Penyakit & Solusi Penanganan**")
+                
                 st.info(
                     f"**{detail.get('title', '')}**\n\n{detail.get('desc', '')}"
                 )
 
                 st.success(
-                    f"**💡 Solusi & Pencegahan:**\n\n{detail.get('prevention', '')}"
+                    f"**💡 Langkah Penanganan & Pencegahan:**\n\n{detail.get('prevention', '')}"
                 )
+
 else:
     st.write(
-        " Silakan unggah gambar atau gunakan kamera di atas. Hasil diagnosa dan saran penanganan akan langsung ditampilkan di bagian ini."
+        " Silakan masukkan gambar di bagian atas. Hasil analisis lengkap akan ditampilkan secara otomatis pada bagian ini."
     )
 
 st.markdown("</div>", unsafe_allow_html=True)
