@@ -333,7 +333,7 @@ st.markdown(
     </div>
     <br>
     <div class="card">
-        <div style="font-size:1.6rem;margin-bottom:10px;">🎯</div>
+        <div style="font-size:1.6rem;margin-bottom:10px;"></div>
         <div class="tech-title">Misi Kami</div>
         <div class="tech-desc" style="margin-bottom:6px;">
             Membantu petani dan konsumen apel mengenali kondisi buah secara objektif
@@ -553,10 +553,10 @@ st.markdown(
 
 # --- 11a. Input Gambar ---
 with st.container(border=True):
-    st.markdown("#### 📷 1. Input Gambar Buah Apel")
+    st.markdown("#### Input Gambar Buah Apel")
 
     tab_upload, tab_camera = st.tabs(
-        ["📁 Upload Gambar (JPG/PNG)", "📸 Real-time Kamera (Webcam)"]
+        ["Upload Gambar (JPG/PNG)", "Real-time Kamera (Webcam)"]
     )
 
     image_source = None
@@ -579,7 +579,7 @@ with st.container(border=True):
 
     if image_source is not None:
         st.markdown("---")
-        st.markdown("##### 🖼️ Preview Gambar")
+        st.markdown("##### Preview Gambar")
         prev_col1, prev_col2, prev_col3 = st.columns([2, 1, 2])
         with prev_col2:
             st.image(image_source, use_container_width=True, caption="Objek Terpilih")
@@ -588,11 +588,11 @@ st.markdown("<br>", unsafe_allow_html=True)
 
 # --- 11b. Hasil Diagnosa ---
 with st.container(border=True):
-    st.markdown("#### 📊 2. Hasil Diagnosa AI")
+    st.markdown("#### 2. Hasil Diagnosa AI")
 
     if image_source is not None:
         if model is None:
-            st.error("⚠️ Model `apple_disease_model.h5` tidak ditemukan pada direktori utama.")
+            st.error("Model `apple_disease_model.h5` tidak ditemukan pada direktori utama.")
         else:
             with st.spinner("Menganalisis gambar..."):
                 processed_img = preprocess_image(image_source)
@@ -617,7 +617,7 @@ with st.container(border=True):
                 )
 
                 st.markdown("<br>", unsafe_allow_html=True)
-                st.markdown("**📈 Probabilitas Seluruh Kelas:**")
+                st.markdown("**Probabilitas Seluruh Kelas:**")
                 for c_name in CLASS_NAMES:
                     c1, c2 = st.columns([3, 1])
                     with c1:
@@ -632,7 +632,7 @@ with st.container(border=True):
                     st.markdown(
                         f"""
                         <div class="badge-success">
-                            <h3 style="margin:0;">✅ Status: {predicted_class} (Sehat)</h3>
+                            <h3 style="margin:0;">Status: {predicted_class} (Sehat)</h3>
                             <p style="margin:5px 0 0 0;">Tingkat Akurasi / Confidence: <b>{confidence:.2f}%</b></p>
                         </div>
                         """,
@@ -642,7 +642,7 @@ with st.container(border=True):
                     st.markdown(
                         f"""
                         <div class="badge-danger">
-                            <h3 style="margin:0;">⚠️ Status Terinfeksi: {predicted_class}</h3>
+                            <h3 style="margin:0;">Status Terinfeksi: {predicted_class}</h3>
                             <p style="margin:5px 0 0 0;">Tingkat Akurasi / Confidence: <b>{confidence:.2f}%</b></p>
                         </div>
                         """,
@@ -667,9 +667,9 @@ with st.container(border=True):
                 detail = CLASS_DETAILS.get(predicted_class, {})
                 if detail:
                     st.markdown("---")
-                    st.markdown("#### 📌 3. Detail Penyakit & Solusi Penanganan")
+                    st.markdown("#### Detail Penyakit & Solusi Penanganan")
                     st.info(f"**{detail.get('title', '')}**\n\n{detail.get('desc', '')}")
-                    st.success(f"**💡 Langkah Penanganan & Pencegahan:**\n\n{detail.get('prevention', '')}")
+                    st.success(f"**Langkah Penanganan & Pencegahan:**\n\n{detail.get('prevention', '')}")
 
     else:
         st.write("Silakan masukkan gambar di bagian atas. Hasil analisis lengkap akan ditampilkan secara otomatis pada bagian ini.")
