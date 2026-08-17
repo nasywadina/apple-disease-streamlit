@@ -296,7 +296,7 @@ st.markdown(
                 <a class="btn-secondary" href="#tentang">Pelajari Lebih</a>
             </div>
             <div class="hero-stats">
-                <div><div class="stat-num">86.67%</div><div class="stat-label">Akurasi Model</div></div>
+                <div><div class="stat-num">85.40%</div><div class="stat-label">Akurasi Model</div></div>
                 <div><div class="stat-num">6</div><div class="stat-label">Kelas Deteksi</div></div>
                 <div><div class="stat-num">MobileNetV2</div><div class="stat-label">Arsitektur</div></div>
             </div>
@@ -339,7 +339,7 @@ st.markdown(
             Membantu konsumen mengenali kondisi buah apel secara objektif
             dan efisien sebelum membeli atau mengonsumsinya.
         </div>
-        <div class="mission-check"><span class="dot">✓</span> Akurasi model teruji 86.67%</div>
+        <div class="mission-check"><span class="dot">✓</span> Akurasi model teruji 85.40%</div>
         <div class="mission-check"><span class="dot">✓</span> Hasil analisis cepat</div>
         <div class="mission-check"><span class="dot">✓</span> Berbasis web, tanpa instalasi tambahan</div>
     </div>
@@ -481,7 +481,7 @@ st.markdown(
             <div class="card feature-card">
                 <div class="feature-icon" style="background:#2F7A4B;">📈</div>
                 <div class="tech-title" style="font-size:0.98rem;">Akurasi Tinggi</div>
-                <div class="tech-desc">Model teruji dengan akurasi 86.67% pada data pengujian.</div>
+                <div class="tech-desc">Model teruji dengan akurasi 85.40% pada data pengujian.</div>
             </div>
             <div class="card feature-card">
                 <div class="feature-icon" style="background:#D79A2C;">📱</div>
