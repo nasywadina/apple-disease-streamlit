@@ -164,7 +164,7 @@ st.markdown(
     .badge-success{background:var(--leaf-green-soft); border:2px solid var(--leaf-green); border-radius:14px; padding:18px 20px; color:#1E4D30;}
     .badge-danger{background:var(--apple-red-soft); border:2px solid var(--apple-red); border-radius:14px; padding:18px 20px; color:#6E1712;}
     .badge-warning{background:var(--apple-red-soft); border:2px solid var(--apple-red); border-radius:14px; padding:18px 20px; color:#6E1712;}
-    .stProgress > div > div > div > div{background-color:var(--leaf-green-soft) !important; border-radius:8px;}
+    .stProgress > div > div > div > div{background-color:var(--leaf-green) !important; border-radius:8px;}
 
     /* ---------- FOOTER ---------- */
     .footer{padding:36px 0; text-align:center; color:var(--stone); font-size:0.85rem; border-top:1px solid var(--line);}
