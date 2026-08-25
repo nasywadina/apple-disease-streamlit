@@ -175,7 +175,7 @@ st.markdown(
     .class-name{color:#000000;}
     .arch-title{color:#000000;}
     .flow-title{color:#000000;}
-    h4{color:#000000 !important;}
+    h4, h5{color:#000000 !important;}
 
     html body [role="tab"] p,
     html body [data-baseweb="tab"] p,
@@ -245,11 +245,6 @@ st.markdown(
     }
     div[class*="stFileChip"] small{
     color:#5C6270 !important;
-    }
-
-    div[data-testid="stImage"] span,
-    div[data-testid="stImage"] h5{
-    color:#26211C !important;
     }
 
     /* ---------- CAPTION GAMBAR ---------- */
