@@ -164,7 +164,7 @@ st.markdown(
     .badge-success{background:var(--leaf-green-soft); border:2px solid var(--leaf-green); border-radius:14px; padding:18px 20px; color:#1E4D30;}
     .badge-danger{background:var(--apple-red-soft); border:2px solid var(--apple-red); border-radius:14px; padding:18px 20px; color:#6E1712;}
     .badge-warning{background:var(--gold-soft); border:2px solid var(--gold); border-radius:14px; padding:18px 20px; color:#7A5613;}
-    .stProgress > div > div > div > div{background-color:var(--apple-red) !important; border-radius:8px;}
+    .stProgress > div > div > div > div{background-color:var(--leaf-green-soft) !important; border-radius:8px;}
 
     /* ---------- FOOTER ---------- */
     .footer{padding:36px 0; text-align:center; color:var(--stone); font-size:0.85rem; border-top:1px solid var(--line);}
@@ -230,6 +230,28 @@ st.markdown(
     }
     section[data-testid="stFileUploaderDropzone"] button svg{
     fill:#26211C !important;
+    }
+
+    /* ---------- Kartu preview file setelah diunggah ---------- */
+    div[data-testid="stFileUploaderFile"]{
+        background-color:#EEF0F6 !important;
+        border:1px solid #E4E7EF !important;
+        border-radius:10px !important;
+    }
+    div[data-testid="stFileUploaderFile"] span,
+    div[data-testid="stFileUploaderFile"] p{
+        color:#26211C !important;
+    }
+    div[data-testid="stFileUploaderFile"] small{
+        color:#5C6270 !important;
+    }
+    div[data-testid="stFileUploaderFile"] svg{
+        fill:#26211C !important;
+    }
+
+    div[data-testid="stMarkdown"] p{
+        color:var(--charcoal) !important;
+        opacity:1 !important;
     }
 
     /* ---------- Semua teks dari st.write() / st.markdown() biasa ---------- */
@@ -649,7 +671,7 @@ with st.container(border=True):
 
     if image_source is not None:
         st.markdown("---")
-        st.markdown("#####Preview Gambar")
+        st.markdown("##### Preview Gambar")
         prev_col1, prev_col2, prev_col3 = st.columns([2, 1, 2])
         with prev_col2:
             st.image(image_source, use_container_width=True, caption="Objek Terpilih")
