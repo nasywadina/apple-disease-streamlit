@@ -163,7 +163,7 @@ st.markdown(
     /* ---------- DIAGNOSIS BADGES (fungsi klasifikasi) ---------- */
     .badge-success{background:var(--leaf-green-soft); border:2px solid var(--leaf-green); border-radius:14px; padding:18px 20px; color:#1E4D30;}
     .badge-danger{background:var(--apple-red-soft); border:2px solid var(--apple-red); border-radius:14px; padding:18px 20px; color:#6E1712;}
-    .badge-warning{background:var(--apple-red); border:2px solid var(--gold); border-radius:14px; padding:18px 20px; color:#7A5613;}
+    .badge-warning{background:var(--apple-red-soft); border:2px solid var(--apple-red); border-radius:14px; padding:18px 20px; color:#7A5613;}
     .stProgress > div > div > div > div{background-color:var(--leaf-green-soft) !important; border-radius:8px;}
 
     /* ---------- FOOTER ---------- */
