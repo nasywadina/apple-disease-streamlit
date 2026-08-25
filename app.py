@@ -169,29 +169,30 @@ st.markdown(
     /* ---------- FOOTER ---------- */
     .footer{padding:36px 0; text-align:center; color:var(--stone); font-size:0.85rem; border-top:1px solid var(--line);}
 
-    /* Input Gambar Buah Apel", dst → hitam */
+    /* ---------- CUSTOM OVERRIDE — WARNA TEKS ---------- */
+
+    .tech-title{color:#000000;}
+    .class-name{color:#000000;}
+    .arch-title{color:#000000;}
+    .flow-title{color:#000000;}
     h4{color:#000000 !important;}
 
-    /* "Upload Gambar (JPG/PNG)" & "Real-time Kamera (Webcam)" */
-    div[data-baseweb="tab-list"] button,
-    div[data-baseweb="tab-list"] button *{
-    color:var(--charcoal) !important;
-    opacity:1 !important;
-    visibility:visible !important;
+    html body [role="tab"] p,
+    html body [data-baseweb="tab"] p,
+    html body div[data-testid] [role="tab"] p {
+        color: var(--charcoal) !important;
+        opacity: 1 !important;
     }
-    div[data-baseweb="tab-list"] button[aria-selected="true"],
-    div[data-baseweb="tab-list"] button[aria-selected="true"] *{
-    color:var(--apple-red) !important;
+    html body [role="tab"][aria-selected="true"] p,
+    html body [data-baseweb="tab"][aria-selected="true"] p {
+        color: var(--apple-red) !important;
     }
-    /* "Unggah foto buah apel di sini..." (teks dropzone file uploader) */
+    div[data-baseweb="tab-highlight"]{background-color:var(--apple-red) !important;}
+    div[data-baseweb="tab-border"]{background-color:var(--line) !important;}
+
     div[data-testid="stFileUploaderDropzoneInstructions"] span,
     div[data-testid="stFileUploaderDropzoneInstructions"] small{color:#000000 !important;}
     div[data-testid="stWidgetLabel"] p{color:#000000 !important;}
-    button[data-baseweb="tab"]{opacity:1 !important;}
-    button[data-baseweb="tab"] p{color:var(--charcoal) !important; opacity:1 !important;}
-    button[data-baseweb="tab"][aria-selected="true"] p{color:var(--apple-red) !important;}
-    div[data-baseweb="tab-highlight"]{background-color:var(--apple-red) !important;}
-    div[data-baseweb="tab-border"]{background-color:var(--line) !important;}
     
     </style>
 """,
