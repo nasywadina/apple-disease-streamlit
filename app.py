@@ -202,16 +202,24 @@ st.markdown(
 
     /* ---------- Kotak dropzone file uploader ---------- */
     div[data-testid="stFileUploaderDropzone"]{
-    background-color:var(--cream-alt) !important;
-    border:1.5px dashed var(--line) !important;
-    border-radius:14px !important;
+    background-color:#EEF0F6 !important;
+    border:1px solid #E4E7EF !important;
+    border-radius:12px !important;
     }
 
+    div[data-testid="stFileUploaderDropzone"] small{
+    color:#5C6270 !important;
+    }
+    
     /* ---------- Tombol "Upload" di dalam dropzone ---------- */
     div[data-testid="stFileUploaderDropzone"] button{
-    background-color:var(--apple-red) !important;
-    color:#FFFFFF !important;
-    border:none !important;
+    background-color:#FFFFFF !important;
+    color:#8C1D17 !important;
+    border:1px solid #E4E7EF !important;
+    border-radius:8px !important;
+    }
+    div[data-testid="stFileUploaderDropzone"] button svg{
+    fill:#8C1D17 !important;
     }
     
     </style>
