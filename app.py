@@ -169,6 +169,20 @@ st.markdown(
     /* ---------- FOOTER ---------- */
     .footer{padding:36px 0; text-align:center; color:var(--stone); font-size:0.85rem; border-top:1px solid var(--line);}
 
+    /* 1. Input Gambar Buah Apel", dst → hitam */
+    h4{color:#000000 !important;}
+
+    /* "Upload Gambar (JPG/PNG)" & "Real-time Kamera (Webcam)" */
+    button[data-baseweb="tab"]{opacity:1 !important;}
+    button[data-baseweb="tab"] p{color:var(--charcoal) !important; opacity:1 !important;}
+    button[data-baseweb="tab"][aria-selected="true"] p{color:var(--apple-red) !important;}
+    div[data-baseweb="tab-highlight"]{background-color:var(--apple-red) !important;}
+    div[data-baseweb="tab-border"]{background-color:var(--line) !important;}
+
+    /* "Unggah foto buah apel di sini..." (teks dropzone file uploader) */
+    div[data-testid="stFileUploaderDropzoneInstructions"] span,
+    div[data-testid="stFileUploaderDropzoneInstructions"] small{color:#000000 !important;}
+    div[data-testid="stWidgetLabel"] p{color:#000000 !important;}
     button[data-baseweb="tab"]{opacity:1 !important;}
     button[data-baseweb="tab"] p{color:var(--charcoal) !important; opacity:1 !important;}
     button[data-baseweb="tab"][aria-selected="true"] p{color:var(--apple-red) !important;}
