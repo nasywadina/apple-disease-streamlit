@@ -190,9 +190,15 @@ st.markdown(
     div[data-baseweb="tab-highlight"]{background-color:var(--apple-red) !important;}
     div[data-baseweb="tab-border"]{background-color:var(--line) !important;}
 
+    label p,
+    label span,
+    div[data-testid="stWidgetLabel"] p,
+    div[data-testid="stWidgetLabel"] span,
     div[data-testid="stFileUploaderDropzoneInstructions"] span,
-    div[data-testid="stFileUploaderDropzoneInstructions"] small{color:#000000 !important;}
-    div[data-testid="stWidgetLabel"] p{color:#000000 !important;}
+    div[data-testid="stFileUploaderDropzoneInstructions"] small {
+    color:#000000 !important;
+    opacity:1 !important;
+}
 
     /* ---------- Kotak dropzone file uploader ---------- */
     div[data-testid="stFileUploaderDropzone"]{
