@@ -271,6 +271,30 @@ st.markdown(
     border-radius:8px !important;
     }
 
+    /* ---------- Kotak st.info() — "Detail Penyakit" ---------- */
+    div[data-testid="stAlertContainer"]:has(div[data-testid="stAlertContentInfo"]){
+    background-color:#E7F0FE !important;
+    border:1px solid #C7DBFC !important;
+    border-radius:10px !important;
+    }
+    div[data-testid="stAlertContentInfo"] p,
+    div[data-testid="stAlertContentInfo"] strong{
+    color:#1B3A6B !important;
+    opacity:1 !important;
+    }
+
+    /* ---------- Kotak st.success() — "Langkah Penanganan" ---------- */
+    div[data-testid="stAlertContainer"]:has(div[data-testid="stAlertContentSuccess"]){
+    background-color:#E3F3E5 !important;
+    border:1px solid #C3E6C7 !important;
+    border-radius:10px !important;
+    }
+    div[data-testid="stAlertContentSuccess"] p,
+    div[data-testid="stAlertContentSuccess"] strong{
+    color:#1E4D30 !important;
+    opacity:1 !important;
+    }
+
     </style>
 """,
     unsafe_allow_html=True,
