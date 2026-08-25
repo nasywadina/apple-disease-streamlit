@@ -247,6 +247,11 @@ st.markdown(
     color:#5C6270 !important;
     }
 
+    div[data-testid="stImage"] span,
+    div[data-testid="stImage"] h5{
+    color:#26211C !important;
+    }
+
     /* ---------- CAPTION GAMBAR ---------- */
     div[data-testid="stImageCaption"],
     div[data-testid="stImageCaption"] *{
