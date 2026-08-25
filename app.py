@@ -233,31 +233,35 @@ st.markdown(
     }
 
     /* ---------- Kartu preview file setelah diunggah ---------- */
-    div[data-testid="stFileUploaderFile"]{
-        background-color:#EEF0F6 !important;
-        border:1px solid #E4E7EF !important;
-        border-radius:10px !important;
+    div[data-testid="stFileUploaderFile"],
+    div[data-testid="stFileUploaderFile"] *{
+    color:#26211C !important;
+    opacity:1 !important;
     }
-    div[data-testid="stFileUploaderFile"] span,
-    div[data-testid="stFileUploaderFile"] p{
-        color:#26211C !important;
+    div[data-testid="stFileUploaderFile"]{
+    background-color:#EEF0F6 !important;
+    border:1px solid #E4E7EF !important;
+    border-radius:10px !important;
     }
     div[data-testid="stFileUploaderFile"] small{
-        color:#5C6270 !important;
+    color:#5C6270 !important;
     }
-    div[data-testid="stFileUploaderFile"] svg{
-        fill:#26211C !important;
-    }
-
-    div[data-testid="stMarkdown"] p{
-        color:var(--charcoal) !important;
-        opacity:1 !important;
-    }
-
+    
     /* ---------- Semua teks dari st.write() / st.markdown() biasa ---------- */
     div[data-testid="stMarkdown"] p{
         color:var(--charcoal) !important;
         opacity:1 !important;
+    }
+
+    /* ---------- PROGRESS BAR (persentase probabilitas kelas) ---------- */
+    div[data-testid="stProgressBarTrack"]{
+    background-color:#EEF0F6 !important;
+    border-radius:8px !important;
+    height:8px !important;
+    }
+    div[data-testid="stProgressBarTrack"] > div{
+    background-color:#3B82F6 !important;
+    border-radius:8px !important;
     }
 
     </style>
