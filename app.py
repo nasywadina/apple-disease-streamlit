@@ -247,7 +247,11 @@ st.markdown(
     color:#5C6270 !important;
     }
 
-    /* ---------- CAPTION GAMBAR ("Objek Terpilih") ---------- */
+    /* ---------- CAPTION GAMBAR ---------- */
+    div[data-testid="stImage"] span,
+    div[data-testid="stImage"] h5{
+    color:#26211C !important;
+    }
     div[data-testid="stImageCaption"],
     div[data-testid="stImageCaption"] *{
     color:#26211C !important;
