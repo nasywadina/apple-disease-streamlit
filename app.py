@@ -233,18 +233,25 @@ st.markdown(
     }
 
     /* ---------- Kartu preview file setelah diunggah ---------- */
-    div[data-testid="stFileUploaderFile"],
-    div[data-testid="stFileUploaderFile"] *{
+    div[class*="stFileChip"],
+    div[class*="stFileChip"] *{
     color:#26211C !important;
     opacity:1 !important;
-    }
-    div[data-testid="stFileUploaderFile"]{
     background-color:#EEF0F6 !important;
+    }
+    div[class*="stFileChip"]{
     border:1px solid #E4E7EF !important;
     border-radius:10px !important;
     }
-    div[data-testid="stFileUploaderFile"] small{
+    div[class*="stFileChip"] small{
     color:#5C6270 !important;
+    }
+
+    /* ---------- CAPTION GAMBAR ("Objek Terpilih") ---------- */
+    div[data-testid="stImageCaption"],
+    div[data-testid="stImageCaption"] *{
+    color:#26211C !important;
+    opacity:1 !important;
     }
     
     /* ---------- Semua teks dari st.write() / st.markdown() biasa ---------- */
