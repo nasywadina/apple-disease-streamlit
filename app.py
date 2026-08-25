@@ -169,9 +169,18 @@ st.markdown(
     /* ---------- FOOTER ---------- */
     .footer{padding:36px 0; text-align:center; color:var(--stone); font-size:0.85rem; border-top:1px solid var(--line);}
 
-    /* ---------- TEKS WARNA HITAM: INPUT GAMBAR SECTION ---------- */
+        /* ---------- TEKS WARNA: INPUT GAMBAR SECTION ---------- */
     h4{color:#000000 !important;}
+
+    /* Tab tidak aktif → warna gelap */
+    button[data-baseweb="tab"] p{color:var(--charcoal) !important;}
+    /* Tab aktif/dipilih → warna merah */
     button[data-baseweb="tab"][aria-selected="true"] p{color:var(--apple-red) !important;}
+    /* Garis bawah merah pada tab aktif */
+    div[data-baseweb="tab-highlight"]{background-color:var(--apple-red) !important;}
+    /* Garis pemisah bawah tab-list */
+    div[data-baseweb="tab-border"]{background-color:var(--line) !important;}
+
     div[data-testid="stFileUploaderDropzoneInstructions"] span,
     div[data-testid="stFileUploaderDropzoneInstructions"] small{color:#000000 !important;}
     div[data-testid="stWidgetLabel"] p{color:#000000 !important;}
