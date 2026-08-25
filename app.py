@@ -171,7 +171,7 @@ st.markdown(
 
     /* ---------- TEKS WARNA HITAM: INPUT GAMBAR SECTION ---------- */
     h4{color:#000000 !important;}
-    button[data-baseweb="tab"] p{color:var(--stone) !important;}
+    button[data-baseweb="tab"][aria-selected="true"] p{color:var(--apple-red) !important;}
     div[data-testid="stFileUploaderDropzoneInstructions"] span,
     div[data-testid="stFileUploaderDropzoneInstructions"] small{color:#000000 !important;}
     div[data-testid="stWidgetLabel"] p{color:#000000 !important;}
