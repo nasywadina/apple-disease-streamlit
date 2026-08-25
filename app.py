@@ -652,7 +652,7 @@ st.markdown("<br>", unsafe_allow_html=True)
 
 # --- 11b. Hasil Diagnosa ---
 with st.container(border=True):
-    st.markdown("####Hasil Diagnosa AI")
+    st.markdown("#### Hasil Diagnosa AI")
 
     if image_source is not None:
         if model is None:
