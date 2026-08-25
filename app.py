@@ -168,6 +168,14 @@ st.markdown(
 
     /* ---------- FOOTER ---------- */
     .footer{padding:36px 0; text-align:center; color:var(--stone); font-size:0.85rem; border-top:1px solid var(--line);}
+
+    /* ---------- TEKS WARNA HITAM: INPUT GAMBAR SECTION ---------- */
+    h4{color:#000000 !important;}
+    button[data-baseweb="tab"] p{color:#000000 !important;}
+    div[data-testid="stFileUploaderDropzoneInstructions"] span,
+    div[data-testid="stFileUploaderDropzoneInstructions"] small{color:#000000 !important;}
+    div[data-testid="stWidgetLabel"] p{color:#000000 !important;}
+    
     </style>
 """,
     unsafe_allow_html=True,
