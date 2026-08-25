@@ -7,7 +7,7 @@ import tensorflow as tf
 # 1. KONFIGURASI HALAMAN
 # ------------------------------------------------------------------------------
 st.set_page_config(
-    page_title="AppleScan AI — Klasifikasi Penyakit Buah Apel",
+    page_title="AppleScan AI — Klasifikasi Kondisi Buah Apel",
     page_icon="🍎",
     layout="wide",
     initial_sidebar_state="collapsed",
@@ -137,7 +137,7 @@ st.markdown(
 
     .tech-icon{width:52px; height:52px; border-radius:14px; display:flex; align-items:center;
         justify-content:center; font-size:1.4rem; margin-bottom:16px; color:#fff;}
-    .tech-title{font-weight:700; font-size:1.05rem; margin-bottom:6px;}
+    .tech-title{font-weight:700; font-size:1.05rem; margin-bottom:6px; color:#000000;}
     .tech-desc{color:var(--stone); font-size:0.88rem; line-height:1.5; margin-bottom:12px;}
     .tag{display:inline-block; font-size:0.72rem; font-weight:700; padding:4px 11px;
         border-radius:999px; letter-spacing:0.03em;}
