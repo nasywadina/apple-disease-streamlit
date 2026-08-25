@@ -123,54 +123,6 @@ st.markdown(
         box-shadow:0 4px 14px -8px rgba(38,33,28,0.08);
     }
 
-    /* ---------- FILE UPLOADER (disamakan dengan tema Orchard) ---------- */
-    div[data-testid="stFileUploaderDropzone"]{
-        background:var(--cream-alt) !important;
-        border:1.5px dashed var(--line) !important;
-        border-radius:14px !important;
-        transition:border-color .15s ease, background .15s ease;
-    }
-    div[data-testid="stFileUploaderDropzone"]:hover{
-        border-color:var(--apple-red) !important;
-        background:var(--apple-red-soft) !important;
-    }
-    div[data-testid="stFileUploaderDropzoneInstructions"] span,
-    div[data-testid="stFileUploaderDropzoneInstructions"] small,
-    div[data-testid="stFileUploaderDropzoneInstructions"] div{
-        color:var(--charcoal) !important;
-    }
-    div[data-testid="stFileUploaderDropzoneInstructions"] svg{
-        fill:var(--apple-red) !important;
-    }
-    div[data-testid="stFileUploaderDropzone"] button{
-        background:#fff !important;
-        color:var(--charcoal) !important;
-        border:1.5px solid var(--line) !important;
-        border-radius:8px !important;
-        font-weight:600 !important;
-        box-shadow:none !important;
-    }
-    div[data-testid="stFileUploaderDropzone"] button:hover{
-        border-color:var(--apple-red) !important;
-        color:var(--apple-red) !important;
-    }
-    div[data-testid="stFileUploaderDropzone"] button p{
-        color:inherit !important;
-    }
-    /* kartu file yang sudah terunggah (nama file, ukuran, tombol hapus) */
-    div[data-testid="stFileUploaderFile"]{
-        background:#fff !important;
-        border:1px solid var(--line) !important;
-        border-radius:10px !important;
-        color:var(--charcoal) !important;
-    }
-    div[data-testid="stFileUploaderFile"] *{
-        color:var(--charcoal) !important;
-    }
-    div[data-testid="stFileUploaderFile"] small{
-        color:var(--stone) !important;
-    }
-
     .grid{display:grid; gap:22px;}
     .grid-2{grid-template-columns:1.1fr 1fr;}
     .grid-3{grid-template-columns:repeat(3,1fr);}
