@@ -231,6 +231,12 @@ st.markdown(
     section[data-testid="stFileUploaderDropzone"] button svg{
     fill:#26211C !important;
     }
+
+    /* ---------- Semua teks dari st.write() / st.markdown() biasa ---------- */
+    div[data-testid="stMarkdown"] p{
+        color:var(--charcoal) !important;
+        opacity:1 !important;
+    }
     
     </style>
 """,
