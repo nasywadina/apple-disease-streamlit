@@ -193,6 +193,20 @@ st.markdown(
     div[data-testid="stFileUploaderDropzoneInstructions"] span,
     div[data-testid="stFileUploaderDropzoneInstructions"] small{color:#000000 !important;}
     div[data-testid="stWidgetLabel"] p{color:#000000 !important;}
+
+    /* ---------- Kotak dropzone file uploader ---------- */
+    div[data-testid="stFileUploaderDropzone"]{
+        background-color:var(--cream-alt) !important;
+        border:1.5px dashed var(--line) !important;
+        border-radius:14px !important;
+    }
+
+    /* Tombol "Upload" di dalam dropzone */
+    div[data-testid="stFileUploaderDropzone"] button{
+        background-color:var(--apple-red) !important;
+        color:#FFFFFF !important;
+        border:none !important;
+    }
     
     </style>
 """,
