@@ -176,7 +176,7 @@ st.markdown(
     h4{color:#000000 !important;}
 
     button[data-baseweb="tab"]{opacity:1 !important;}
-    button[data-baseweb="tab"] p{color:var(--charcoal) !important; opacity:1 !important;}
+    button[data-baseweb="tab"] p{color:var(--stone) !important; opacity:1 !important;}
     button[data-baseweb="tab"][aria-selected="true"] p{color:var(--apple-red) !important;}
     div[data-baseweb="tab-highlight"]{background-color:var(--apple-red) !important;}
     div[data-baseweb="tab-border"]{background-color:var(--line) !important;}
