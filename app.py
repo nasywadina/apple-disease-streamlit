@@ -311,10 +311,10 @@ st.markdown(
     <div class="hero-wrap">
         <div class="hero-text">
             <div class="eyebrow">🌿 Klasifikasi Berbasis AI</div>
-            <div class="hero-title">Deteksi Dini<br><span class="accent">Penyakit Buah Apel</span><br>dengan AI</div>
+            <div class="hero-title">Deteksi Dini<br><span class="accent">Kondisi Buah Apel</span><br>dengan AI</div>
             <div class="hero-desc">
                 Sistem klasifikasi cerdas berbasis Convolutional Neural Network dengan
-                Transfer Learning MobileNetV2 untuk mengidentifikasi penyakit dan hama
+                Transfer Learning MobileNetV2 untuk mengidentifikasi kondisi dan hama
                 pada buah apel secara akurat, langsung dari peramban web Anda.
             </div>
             <div class="hero-btns">
@@ -354,7 +354,7 @@ st.markdown(
         <div class="section-title">Tentang AppleScan AI</div>
         <div class="section-sub center">
             Sistem klasifikasi otomatis yang memanfaatkan teknologi Deep Learning untuk
-            mengidentifikasi penyakit dan hama pada buah apel dengan presisi tinggi.
+            mengidentifikasi kondisi dan hama pada buah apel dengan presisi tinggi.
         </div>
     </div>
     <br>
@@ -363,10 +363,10 @@ st.markdown(
         <div class="tech-title">Misi Kami</div>
         <div class="tech-desc" style="margin-bottom:6px;">
             Membantu petani dan konsumen apel mengenali kondisi buah secara objektif
-            dan efisien, sehingga penanganan penyakit dapat dilakukan lebih cepat.
+            dan efisien, sehingga penanganan kondisi dapat dilakukan lebih cepat.
         </div>
         <div class="mission-check"><span class="dot">✓</span> Akurasi model teruji 86.67%</div>
-        <div class="mission-check"><span class="dot">✓</span> Hasil analisis real-time</div>
+        <div class="mission-check"><span class="dot">✓</span> Hasil analisis cepat</div>
         <div class="mission-check"><span class="dot">✓</span> Berbasis web, tanpa instalasi tambahan</div>
     </div>
     <br>
@@ -495,14 +495,14 @@ st.markdown(
         <div class="center" style="max-width:680px;">
             <div class="eyebrow" style="margin-left:auto;margin-right:auto;">Features</div>
             <div class="section-title">Fitur Unggulan</div>
-            <div class="section-sub center">Berbagai fitur yang membuat sistem ini praktis digunakan untuk klasifikasi penyakit apel.</div>
+            <div class="section-sub center">Berbagai fitur yang membuat sistem ini praktis digunakan untuk klasifikasi kondisi apel.</div>
         </div>
         <br>
         <div class="grid grid-4">
             <div class="card feature-card">
                 <div class="feature-icon" style="background:#B3261E;">⚡</div>
-                <div class="tech-title" style="font-size:0.98rem;">Real-time</div>
-                <div class="tech-desc">Hasil klasifikasi tampil langsung setelah gambar diunggah.</div>
+                <div class="tech-title" style="font-size:0.98rem;">Proses Cepat</div>
+                <div class="tech-desc">Hasil klasifikasi tampil cepat setelah gambar diunggah atau difoto.</div>
             </div>
             <div class="card feature-card">
                 <div class="feature-icon" style="background:#2F7A4B;">📈</div>
@@ -570,7 +570,7 @@ st.markdown(
     <div class="center" style="max-width:680px;">
         <div class="eyebrow" style="margin-left:auto;margin-right:auto;">Try It Now</div>
         <div class="section-title">Coba AppleScan AI</div>
-        <div class="section-sub center">Unggah gambar buah apel Anda dan biarkan AI menganalisis kondisinya secara real-time.</div>
+        <div class="section-sub center">Unggah gambar buah apel Anda dan biarkan AI menganalisis kondisinya cepat.</div>
     </div>
     <br>
     """,
@@ -582,7 +582,7 @@ with st.container(border=True):
     st.markdown("#### Input Gambar Buah Apel")
 
     tab_upload, tab_camera = st.tabs(
-        ["Upload Gambar (JPG/PNG)", "Real-time Kamera (Webcam)"]
+        ["Upload Gambar (JPG/PNG)", "Kamera (Ambil Foto)"]
     )
 
     image_source = None
@@ -689,11 +689,11 @@ with st.container(border=True):
 
                     st.progress(prob)
 
-                # --- Detail Penyakit ---
+                # --- Detail Kondisi ---
                 detail = CLASS_DETAILS.get(predicted_class, {})
                 if detail:
                     st.markdown("---")
-                    st.markdown("#### Detail Penyakit & Solusi Penanganan")
+                    st.markdown("#### Detail Kondisi & Solusi Penanganan")
                     st.info(f"**{detail.get('title', '')}**\n\n{detail.get('desc', '')}")
                     st.success(f"**Langkah Penanganan & Pencegahan:**\n\n{detail.get('prevention', '')}")
 
@@ -708,7 +708,7 @@ st.markdown('<div style="padding-bottom:78px;"></div>', unsafe_allow_html=True)
 st.markdown(
     """
     <div class="footer">
-        🍎 AppleScan AI — Skripsi Klasifikasi Penyakit Buah Apel berbasis CNN &amp; Transfer Learning MobileNetV2
+        🍎 AppleScan AI — Skripsi Klasifikasi Kondisi Buah Apel berbasis CNN &amp; Transfer Learning MobileNetV2
     </div>
     """,
     unsafe_allow_html=True,
