@@ -248,10 +248,6 @@ st.markdown(
     }
 
     /* ---------- CAPTION GAMBAR ---------- */
-    div[data-testid="stImage"] span,
-    div[data-testid="stImage"] h5{
-    color:#26211C !important;
-    }
     div[data-testid="stImageCaption"],
     div[data-testid="stImageCaption"] *{
     color:#26211C !important;
