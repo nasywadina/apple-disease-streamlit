@@ -259,7 +259,21 @@ st.markdown(
         color:var(--charcoal) !important;
         opacity:1 !important;
     }
-    
+
+    /* ---------- Track (latar belakang) progress bar — abu-abu terang, tipis ----------*/
+    div[data-testid="stProgress"] > div{
+    background-color:#EEF0F6 !important;
+    border-radius:8px !important;
+    height:8px !important;
+    }
+
+    /* ---------- Fill (bar yang terisi) — biru, tipis, rounded ---------- */
+    div[data-testid="stProgress"] > div > div{
+    background-color:#3B82F6 !important;
+    border-radius:8px !important;
+    height:8px !important;
+    }
+
     </style>
 """,
     unsafe_allow_html=True,
