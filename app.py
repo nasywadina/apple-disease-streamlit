@@ -341,7 +341,7 @@ st.markdown(
     </div>
     <br>
     <div class="card">
-        <div style="font-size:1.6rem;margin-bottom:10px;">🎯</div>
+        
         <div class="tech-title">Misi Kami</div>
         <div class="tech-desc" style="margin-bottom:6px;">
             Membantu petani dan konsumen apel mengenali kondisi buah secara objektif
