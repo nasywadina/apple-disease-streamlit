@@ -7,7 +7,7 @@ import tensorflow as tf
 # 1. KONFIGURASI HALAMAN
 # ------------------------------------------------------------------------------
 st.set_page_config(
-    page_title="AppleScan AI — Klasifikasi Kondisi Buah Apel",
+    page_title="AppleScan AI — Klasifikasi Penyakit Buah Apel",
     page_icon="🍎",
     layout="wide",
     initial_sidebar_state="collapsed",
@@ -285,18 +285,18 @@ st.markdown(
     <div class="hero-wrap">
         <div class="hero-text">
             <div class="eyebrow">🌿 Klasifikasi Berbasis AI</div>
-            <div class="hero-title">Deteksi Dini<br><span class="accent">Kondisi Buah Apel</span><br>dengan AI</div>
+            <div class="hero-title">Deteksi Dini<br><span class="accent">Penyakit Buah Apel</span><br>dengan AI</div>
             <div class="hero-desc">
                 Sistem klasifikasi cerdas berbasis Convolutional Neural Network dengan
-                Transfer Learning MobileNetV2 untuk mengidentifikasi kondisi buah apel
-                secara akurat, langsung dari peramban web Anda.
+                Transfer Learning MobileNetV2 untuk mengidentifikasi penyakit dan hama
+                pada buah apel secara akurat, langsung dari peramban web Anda.
             </div>
             <div class="hero-btns">
                 <a class="btn-primary" href="#coba">🔍 Mulai Diagnosa</a>
                 <a class="btn-secondary" href="#tentang">Pelajari Lebih</a>
             </div>
             <div class="hero-stats">
-                <div><div class="stat-num">85.40%</div><div class="stat-label">Akurasi Model</div></div>
+                <div><div class="stat-num">86.67%</div><div class="stat-label">Akurasi Model</div></div>
                 <div><div class="stat-num">6</div><div class="stat-label">Kelas Deteksi</div></div>
                 <div><div class="stat-num">MobileNetV2</div><div class="stat-label">Arsitektur</div></div>
             </div>
@@ -328,7 +328,7 @@ st.markdown(
         <div class="section-title">Tentang AppleScan AI</div>
         <div class="section-sub center">
             Sistem klasifikasi otomatis yang memanfaatkan teknologi Deep Learning untuk
-            mengidentifikasi kondisi buah apel dengan presisi tinggi.
+            mengidentifikasi penyakit dan hama pada buah apel dengan presisi tinggi.
         </div>
     </div>
     <br>
@@ -336,11 +336,11 @@ st.markdown(
         <div style="font-size:1.6rem;margin-bottom:10px;"></div>
         <div class="tech-title">Misi Kami</div>
         <div class="tech-desc" style="margin-bottom:6px;">
-            Membantu konsumen mengenali kondisi buah apel secara objektif
-            dan efisien sebelum membeli atau mengonsumsinya.
+            Membantu petani dan konsumen apel mengenali kondisi buah secara objektif
+            dan efisien, sehingga penanganan penyakit dapat dilakukan lebih cepat.
         </div>
-        <div class="mission-check"><span class="dot">✓</span> Akurasi model teruji 85.40%</div>
-        <div class="mission-check"><span class="dot">✓</span> Hasil analisis cepat</div>
+        <div class="mission-check"><span class="dot">✓</span> Akurasi model teruji 86.67%</div>
+        <div class="mission-check"><span class="dot">✓</span> Hasil analisis real-time</div>
         <div class="mission-check"><span class="dot">✓</span> Berbasis web, tanpa instalasi tambahan</div>
     </div>
     <br>
@@ -469,19 +469,19 @@ st.markdown(
         <div class="center" style="max-width:680px;">
             <div class="eyebrow" style="margin-left:auto;margin-right:auto;">Features</div>
             <div class="section-title">Fitur Unggulan</div>
-            <div class="section-sub center">Berbagai fitur yang membuat sistem ini praktis digunakan untuk klasifikasi kondisi buah apel.</div>
+            <div class="section-sub center">Berbagai fitur yang membuat sistem ini praktis digunakan untuk klasifikasi penyakit apel.</div>
         </div>
         <br>
         <div class="grid grid-4">
             <div class="card feature-card">
                 <div class="feature-icon" style="background:#B3261E;">⚡</div>
-                <div class="tech-title" style="font-size:0.98rem;">Proses Cepat</div>
-                <div class="tech-desc">Hasil klasifikasi tampil segera setelah gambar diunggah atau difoto.</div>
+                <div class="tech-title" style="font-size:0.98rem;">Real-time</div>
+                <div class="tech-desc">Hasil klasifikasi tampil langsung setelah gambar diunggah.</div>
             </div>
             <div class="card feature-card">
                 <div class="feature-icon" style="background:#2F7A4B;">📈</div>
                 <div class="tech-title" style="font-size:0.98rem;">Akurasi Tinggi</div>
-                <div class="tech-desc">Model teruji dengan akurasi 85.40% pada data pengujian.</div>
+                <div class="tech-desc">Model teruji dengan akurasi 86.67% pada data pengujian.</div>
             </div>
             <div class="card feature-card">
                 <div class="feature-icon" style="background:#D79A2C;">📱</div>
@@ -544,7 +544,7 @@ st.markdown(
     <div class="center" style="max-width:680px;">
         <div class="eyebrow" style="margin-left:auto;margin-right:auto;">Try It Now</div>
         <div class="section-title">Coba AppleScan AI</div>
-        <div class="section-sub center">Unggah gambar buah apel Anda dan biarkan AI menganalisis kondisinya dengan cepat.</div>
+        <div class="section-sub center">Unggah gambar buah apel Anda dan biarkan AI menganalisis kondisinya secara real-time.</div>
     </div>
     <br>
     """,
@@ -556,7 +556,7 @@ with st.container(border=True):
     st.markdown("#### Input Gambar Buah Apel")
 
     tab_upload, tab_camera = st.tabs(
-        ["Upload Gambar (JPG/PNG)", "Kamera (Ambil Foto)"]
+        ["Upload Gambar (JPG/PNG)", "Real-time Kamera (Webcam)"]
     )
 
     image_source = None
@@ -682,7 +682,7 @@ st.markdown('<div style="padding-bottom:78px;"></div>', unsafe_allow_html=True)
 st.markdown(
     """
     <div class="footer">
-        🍎 AppleScan AI — Skripsi Klasifikasi Kondisi Buah Apel berbasis CNN &amp; Transfer Learning MobileNetV2
+        🍎 AppleScan AI — Skripsi Klasifikasi Penyakit Buah Apel berbasis CNN &amp; Transfer Learning MobileNetV2
     </div>
     """,
     unsafe_allow_html=True,
