@@ -7,7 +7,7 @@ import tensorflow as tf
 # 1. KONFIGURASI HALAMAN
 # ------------------------------------------------------------------------------
 st.set_page_config(
-    page_title="AppleScan AI — Klasifikasi Kondisi Buah Apel",
+    page_title="AppleScan AI — Klasifikasi Penyakit Buah Apel",
     page_icon="🍎",
     layout="wide",
     initial_sidebar_state="collapsed",
@@ -39,14 +39,6 @@ st.markdown(
     html{scroll-behavior:smooth;}
     html, body, [class*="css"]{font-family:'Inter', sans-serif; color:var(--charcoal);}
     h1,h2,h3,.display{font-family:'Fraunces', serif;}
-
-    /* Jaring pengaman: pastikan semua teks bawaan Streamlit tetap hitam pekat,
-       tidak ikut memutih saat tema browser/Streamlit pengguna dalam mode gelap */
-    [data-testid="stMarkdownContainer"], [data-testid="stMarkdownContainer"] *,
-    [data-testid="stVerticalBlockBorderWrapper"] label,
-    .stTabs [data-baseweb="tab"] *{
-        color:#000000 !important;
-    }
 
     .stApp{background-color:var(--cream) !important;}
     #MainMenu, footer, header{visibility:hidden;}
@@ -140,12 +132,12 @@ st.markdown(
     .class-card.healthy .class-dot{background:var(--leaf-green);}
     .class-card.pest .class-dot{background:var(--gold);}
     .class-card.disease .class-dot{background:var(--apple-red);}
-    .class-name{font-weight:700; font-size:1rem; margin-bottom:4px; color:#000000 !important;}
+    .class-name{font-weight:700; font-size:1rem; margin-bottom:4px;}
     .class-desc{color:var(--stone); font-size:0.86rem; line-height:1.5;}
 
     .tech-icon{width:52px; height:52px; border-radius:14px; display:flex; align-items:center;
         justify-content:center; font-size:1.4rem; margin-bottom:16px; color:#fff;}
-    .tech-title{font-weight:700; font-size:1.05rem; margin-bottom:6px; color:#000000 !important;}
+    .tech-title{font-weight:700; font-size:1.05rem; margin-bottom:6px;}
     .tech-desc{color:var(--stone); font-size:0.88rem; line-height:1.5; margin-bottom:12px;}
     .tag{display:inline-block; font-size:0.72rem; font-weight:700; padding:4px 11px;
         border-radius:999px; letter-spacing:0.03em;}
@@ -153,7 +145,7 @@ st.markdown(
     .arch-step{text-align:center;}
     .arch-icon{width:56px; height:56px; border-radius:14px; margin:0 auto 12px auto; display:flex;
         align-items:center; justify-content:center; font-size:1.5rem; color:#fff;}
-    .arch-title{font-weight:700; font-size:0.95rem; color:#000000 !important;}
+    .arch-title{font-weight:700; font-size:0.95rem;}
     .arch-sub{color:var(--stone); font-size:0.8rem; margin-top:2px;}
     .arch-arrow{text-align:center; font-size:1.3rem; color:var(--line); align-self:center;}
 
@@ -165,16 +157,13 @@ st.markdown(
     .flow-num{width:52px; height:52px; border-radius:50%; background:var(--apple-red); color:#fff;
         font-family:'Fraunces',serif; font-weight:600; font-size:1.3rem; display:flex; align-items:center;
         justify-content:center; margin:0 auto 14px auto;}
-    .flow-title{font-weight:700; font-size:0.95rem; margin-bottom:4px; color:#000000 !important;}
+    .flow-title{font-weight:700; font-size:0.95rem; margin-bottom:4px;}
     .flow-sub{color:var(--stone); font-size:0.82rem; line-height:1.4;}
 
     /* ---------- DIAGNOSIS BADGES (fungsi klasifikasi) ---------- */
     .badge-success{background:var(--leaf-green-soft); border:2px solid var(--leaf-green); border-radius:14px; padding:18px 20px; color:#1E4D30;}
     .badge-danger{background:var(--apple-red-soft); border:2px solid var(--apple-red); border-radius:14px; padding:18px 20px; color:#6E1712;}
     .badge-warning{background:var(--gold-soft); border:2px solid var(--gold); border-radius:14px; padding:18px 20px; color:#7A5613;}
-    .badge-success h3, .badge-success p{color:#1E4D30 !important;}
-    .badge-danger h3, .badge-danger p{color:#6E1712 !important;}
-    .badge-warning h3, .badge-warning p{color:#7A5613 !important;}
     .stProgress > div > div > div > div{background-color:var(--apple-red) !important; border-radius:8px;}
 
     /* ---------- FOOTER ---------- */
@@ -296,11 +285,11 @@ st.markdown(
     <div class="hero-wrap">
         <div class="hero-text">
             <div class="eyebrow">🌿 Klasifikasi Berbasis AI</div>
-            <div class="hero-title">Deteksi Dini<br><span class="accent">Kondisi Buah Apel</span><br>dengan AI</div>
+            <div class="hero-title">Deteksi Dini<br><span class="accent">Penyakit Buah Apel</span><br>dengan AI</div>
             <div class="hero-desc">
                 Sistem klasifikasi cerdas berbasis Convolutional Neural Network dengan
-                Transfer Learning MobileNetV2 untuk mengidentifikasi kondisi buah apel
-                secara akurat, langsung dari peramban web Anda.
+                Transfer Learning MobileNetV2 untuk mengidentifikasi penyakit dan hama
+                pada buah apel secara akurat, langsung dari peramban web Anda.
             </div>
             <div class="hero-btns">
                 <a class="btn-primary" href="#coba">🔍 Mulai Diagnosa</a>
@@ -339,19 +328,19 @@ st.markdown(
         <div class="section-title">Tentang AppleScan AI</div>
         <div class="section-sub center">
             Sistem klasifikasi otomatis yang memanfaatkan teknologi Deep Learning untuk
-            mengidentifikasi kondisi buah apel dengan presisi tinggi.
+            mengidentifikasi penyakit dan hama pada buah apel dengan presisi tinggi.
         </div>
     </div>
     <br>
     <div class="card">
-        <div style="font-size:1.6rem;margin-bottom:10px;"></div>
+        <div style="font-size:1.6rem;margin-bottom:10px;">🎯</div>
         <div class="tech-title">Misi Kami</div>
         <div class="tech-desc" style="margin-bottom:6px;">
-            Membantu konsumen mengenali kondisi buah apel secara objektif
-            dan efisien sebelum membeli atau mengonsumsinya.
+            Membantu petani dan konsumen apel mengenali kondisi buah secara objektif
+            dan efisien, sehingga penanganan penyakit dapat dilakukan lebih cepat.
         </div>
         <div class="mission-check"><span class="dot">✓</span> Akurasi model teruji 86.67%</div>
-        <div class="mission-check"><span class="dot">✓</span> Hasil analisis cepat</div>
+        <div class="mission-check"><span class="dot">✓</span> Hasil analisis real-time</div>
         <div class="mission-check"><span class="dot">✓</span> Berbasis web, tanpa instalasi tambahan</div>
     </div>
     <br>
@@ -480,14 +469,14 @@ st.markdown(
         <div class="center" style="max-width:680px;">
             <div class="eyebrow" style="margin-left:auto;margin-right:auto;">Features</div>
             <div class="section-title">Fitur Unggulan</div>
-            <div class="section-sub center">Berbagai fitur yang membuat sistem ini praktis digunakan untuk klasifikasi kondisi buah apel.</div>
+            <div class="section-sub center">Berbagai fitur yang membuat sistem ini praktis digunakan untuk klasifikasi penyakit apel.</div>
         </div>
         <br>
         <div class="grid grid-4">
             <div class="card feature-card">
                 <div class="feature-icon" style="background:#B3261E;">⚡</div>
-                <div class="tech-title" style="font-size:0.98rem;">Proses Cepat</div>
-                <div class="tech-desc">Hasil klasifikasi tampil segera setelah gambar diunggah atau difoto.</div>
+                <div class="tech-title" style="font-size:0.98rem;">Real-time</div>
+                <div class="tech-desc">Hasil klasifikasi tampil langsung setelah gambar diunggah.</div>
             </div>
             <div class="card feature-card">
                 <div class="feature-icon" style="background:#2F7A4B;">📈</div>
@@ -555,7 +544,7 @@ st.markdown(
     <div class="center" style="max-width:680px;">
         <div class="eyebrow" style="margin-left:auto;margin-right:auto;">Try It Now</div>
         <div class="section-title">Coba AppleScan AI</div>
-        <div class="section-sub center">Unggah gambar buah apel Anda dan biarkan AI menganalisis kondisinya dengan cepat.</div>
+        <div class="section-sub center">Unggah gambar buah apel Anda dan biarkan AI menganalisis kondisinya secara real-time.</div>
     </div>
     <br>
     """,
@@ -564,10 +553,10 @@ st.markdown(
 
 # --- 11a. Input Gambar ---
 with st.container(border=True):
-    st.markdown("#### Input Gambar Buah Apel")
+    st.markdown("#### 📷 1. Input Gambar Buah Apel")
 
     tab_upload, tab_camera = st.tabs(
-        ["Upload Gambar (JPG/PNG)", "Kamera (Ambil Foto)"]
+        ["📁 Upload Gambar (JPG/PNG)", "📸 Real-time Kamera (Webcam)"]
     )
 
     image_source = None
@@ -590,7 +579,7 @@ with st.container(border=True):
 
     if image_source is not None:
         st.markdown("---")
-        st.markdown("##### Preview Gambar")
+        st.markdown("##### 🖼️ Preview Gambar")
         prev_col1, prev_col2, prev_col3 = st.columns([2, 1, 2])
         with prev_col2:
             st.image(image_source, use_container_width=True, caption="Objek Terpilih")
@@ -599,11 +588,11 @@ st.markdown("<br>", unsafe_allow_html=True)
 
 # --- 11b. Hasil Diagnosa ---
 with st.container(border=True):
-    st.markdown("#### 2. Hasil Diagnosa AI")
+    st.markdown("#### 📊 2. Hasil Diagnosa AI")
 
     if image_source is not None:
         if model is None:
-            st.error("Model `apple_disease_model.h5` tidak ditemukan pada direktori utama.")
+            st.error("⚠️ Model `apple_disease_model.h5` tidak ditemukan pada direktori utama.")
         else:
             with st.spinner("Menganalisis gambar..."):
                 processed_img = preprocess_image(image_source)
@@ -628,7 +617,7 @@ with st.container(border=True):
                 )
 
                 st.markdown("<br>", unsafe_allow_html=True)
-                st.markdown("**Probabilitas Seluruh Kelas:**")
+                st.markdown("**📈 Probabilitas Seluruh Kelas:**")
                 for c_name in CLASS_NAMES:
                     c1, c2 = st.columns([3, 1])
                     with c1:
@@ -643,7 +632,7 @@ with st.container(border=True):
                     st.markdown(
                         f"""
                         <div class="badge-success">
-                            <h3 style="margin:0;">Status: {predicted_class} (Sehat)</h3>
+                            <h3 style="margin:0;">✅ Status: {predicted_class} (Sehat)</h3>
                             <p style="margin:5px 0 0 0;">Tingkat Akurasi / Confidence: <b>{confidence:.2f}%</b></p>
                         </div>
                         """,
@@ -653,7 +642,7 @@ with st.container(border=True):
                     st.markdown(
                         f"""
                         <div class="badge-danger">
-                            <h3 style="margin:0;">Status Terinfeksi: {predicted_class}</h3>
+                            <h3 style="margin:0;">⚠️ Status Terinfeksi: {predicted_class}</h3>
                             <p style="margin:5px 0 0 0;">Tingkat Akurasi / Confidence: <b>{confidence:.2f}%</b></p>
                         </div>
                         """,
@@ -678,9 +667,9 @@ with st.container(border=True):
                 detail = CLASS_DETAILS.get(predicted_class, {})
                 if detail:
                     st.markdown("---")
-                    st.markdown("#### Detail Penyakit & Solusi Penanganan")
+                    st.markdown("#### 📌 3. Detail Penyakit & Solusi Penanganan")
                     st.info(f"**{detail.get('title', '')}**\n\n{detail.get('desc', '')}")
-                    st.success(f"**Langkah Penanganan & Pencegahan:**\n\n{detail.get('prevention', '')}")
+                    st.success(f"**💡 Langkah Penanganan & Pencegahan:**\n\n{detail.get('prevention', '')}")
 
     else:
         st.write("Silakan masukkan gambar di bagian atas. Hasil analisis lengkap akan ditampilkan secara otomatis pada bagian ini.")
@@ -693,7 +682,7 @@ st.markdown('<div style="padding-bottom:78px;"></div>', unsafe_allow_html=True)
 st.markdown(
     """
     <div class="footer">
-        🍎 AppleScan AI — Skripsi Klasifikasi Kondisi Buah Apel berbasis CNN &amp; Transfer Learning MobileNetV2
+        🍎 AppleScan AI — Skripsi Klasifikasi Penyakit Buah Apel berbasis CNN &amp; Transfer Learning MobileNetV2
     </div>
     """,
     unsafe_allow_html=True,
