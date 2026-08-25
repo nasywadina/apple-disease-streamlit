@@ -132,7 +132,7 @@ st.markdown(
     .class-card.healthy .class-dot{background:var(--leaf-green);}
     .class-card.pest .class-dot{background:var(--gold);}
     .class-card.disease .class-dot{background:var(--apple-red);}
-    .class-name{font-weight:700; font-size:1rem; margin-bottom:4px;}
+    .class-name{font-weight:700; font-size:1rem; margin-bottom:4px; color:#000000;}
     .class-desc{color:var(--stone); font-size:0.86rem; line-height:1.5;}
 
     .tech-icon{width:52px; height:52px; border-radius:14px; display:flex; align-items:center;
@@ -145,7 +145,7 @@ st.markdown(
     .arch-step{text-align:center;}
     .arch-icon{width:56px; height:56px; border-radius:14px; margin:0 auto 12px auto; display:flex;
         align-items:center; justify-content:center; font-size:1.5rem; color:#fff;}
-    .arch-title{font-weight:700; font-size:0.95rem;}
+    .arch-title{font-weight:700; font-size:0.95rem; color:#000000;}
     .arch-sub{color:var(--stone); font-size:0.8rem; margin-top:2px;}
     .arch-arrow{text-align:center; font-size:1.3rem; color:var(--line); align-self:center;}
 
@@ -157,7 +157,7 @@ st.markdown(
     .flow-num{width:52px; height:52px; border-radius:50%; background:var(--apple-red); color:#fff;
         font-family:'Fraunces',serif; font-weight:600; font-size:1.3rem; display:flex; align-items:center;
         justify-content:center; margin:0 auto 14px auto;}
-    .flow-title{font-weight:700; font-size:0.95rem; margin-bottom:4px;}
+    .flow-title{font-weight:700; font-size:0.95rem; margin-bottom:4px; color:#000000;}
     .flow-sub{color:var(--stone); font-size:0.82rem; line-height:1.4;}
 
     /* ---------- DIAGNOSIS BADGES (fungsi klasifikasi) ---------- */
