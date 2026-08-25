@@ -201,29 +201,35 @@ st.markdown(
     }
 
     /* ---------- Kotak dropzone file uploader ---------- */
-    section[data-testid="stFileUploaderDropzone"],
-    div[data-testid="stFileUploader"] section {
+    section[data-testid="stFileUploaderDropzone"]{
     background-color:#EEF0F6 !important;
     border:1px solid #E4E7EF !important;
     border-radius:12px !important;
+    box-shadow:none !important;
     }
 
-    section[data-testid="stFileUploaderDropzone"] small,
-    div[data-testid="stFileUploader"] section small {
+    div[data-testid="stFileUploader"] section,
+    div[data-testid="stFileUploader"] section:hover,
+    div[data-testid="stFileUploader"] section:focus-within{
+    border-color:#E4E7EF !important;
+    border-radius:12px !important;
+    box-shadow:none !important;
+    }
+
+    section[data-testid="stFileUploaderDropzone"] small{
     color:#5C6270 !important;
     }
     
     /* ---------- Tombol "Upload" di dalam dropzone ---------- */
-    section[data-testid="stFileUploaderDropzone"] button,
-    div[data-testid="stFileUploader"] section button {
+    section[data-testid="stFileUploaderDropzone"] button{
     background-color:#FFFFFF !important;
-    color:#8C1D17 !important;
+    color:#26211C !important;
     border:1px solid #E4E7EF !important;
     border-radius:8px !important;
+    box-shadow:none !important;
     }
-    section[data-testid="stFileUploaderDropzone"] button svg,
-    div[data-testid="stFileUploader"] section svg {
-    fill:#8C1D17 !important;
+    section[data-testid="stFileUploaderDropzone"] button svg{
+    fill:#26211C !important;
     }
     
     </style>
