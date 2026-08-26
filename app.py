@@ -759,7 +759,7 @@ with st.container(border=True):
                     st.markdown(
                         f"""
                         <div class="badge-success">
-                            <h3 style="margin:0;">✅ Status: {predicted_class} (Sehat)</h3>
+                            <h3 style="margin:0;">Status: {predicted_class} (Sehat)</h3>
                             <p style="margin:5px 0 0 0;">Tingkat Akurasi / Confidence: <b>{confidence:.2f}%</b></p>
                         </div>
                         """,
@@ -769,7 +769,7 @@ with st.container(border=True):
                     st.markdown(
                         f"""
                         <div class="badge-success">
-                            <h3 style="margin:0;">✅ Status Terinfeksi: {predicted_class}</h3>
+                            <h3 style="margin:0;">Status Terinfeksi: {predicted_class}</h3>
                             <p style="margin:5px 0 0 0;">Tingkat Akurasi / Confidence: <b>{confidence:.2f}%</b></p>
                         </div>
                         """,
