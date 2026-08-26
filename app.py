@@ -396,7 +396,7 @@ st.markdown(
             <a href="#teknologi">Teknologi</a>
             <a href="#fitur">Fitur</a>
         </div>
-        <a class="nav-cta" href="#coba">Coba Sekarang</a>
+        <a class="nav-cta" href="#coba">Input Gambar</a>
     </div>
     <div class="navbar-spacer"></div>
     <div id="home"></div>
@@ -423,7 +423,7 @@ st.markdown(
                 <a class="btn-secondary" href="#tentang">Pelajari Lebih</a>
             </div>
             <div class="hero-stats">
-                <div><div class="stat-num">86.67%</div><div class="stat-label">Akurasi Model</div></div>
+                <div><div class="stat-num">85.40%</div><div class="stat-label">Akurasi Model</div></div>
                 <div><div class="stat-num">6</div><div class="stat-label">Kelas Deteksi</div></div>
                 <div><div class="stat-num">MobileNetV2</div><div class="stat-label">Arsitektur</div></div>
             </div>
@@ -466,7 +466,7 @@ st.markdown(
             Membantu petani dan konsumen apel mengenali kondisi buah secara objektif
             dan efisien, sehingga penanganan kondisi dapat dilakukan lebih cepat.
         </div>
-        <div class="mission-check"><span class="dot">✓</span> Akurasi model teruji 86.67%</div>
+        <div class="mission-check"><span class="dot">✓</span> Akurasi model teruji 85.40%</div>
         <div class="mission-check"><span class="dot">✓</span> Hasil analisis cepat</div>
         <div class="mission-check"><span class="dot">✓</span> Berbasis web, tanpa instalasi tambahan</div>
     </div>
@@ -608,7 +608,7 @@ st.markdown(
             <div class="card feature-card">
                 <div class="feature-icon" style="background:#2F7A4B;">📈</div>
                 <div class="tech-title" style="font-size:0.98rem;">Akurasi Tinggi</div>
-                <div class="tech-desc">Model teruji dengan akurasi 86.67% pada data pengujian.</div>
+                <div class="tech-desc">Model teruji dengan akurasi 85.40% pada data pengujian.</div>
             </div>
             <div class="card feature-card">
                 <div class="feature-icon" style="background:#D79A2C;">📱</div>
@@ -663,14 +663,14 @@ st.markdown(
 seed_divider()
 
 # ------------------------------------------------------------------------------
-# 11. COBA SEKARANG — FUNGSI KLASIFIKASI ASLI (UPLOAD / KAMERA)
+# 11.  — FUNGSI KLASIFIKASI ASLI (UPLOAD / KAMERA)
 # ------------------------------------------------------------------------------
 st.markdown('<div id="coba" style="padding-top:78px;"></div>', unsafe_allow_html=True)
 st.markdown(
     """
     <div class="center" style="max-width:680px;">
         <div class="eyebrow" style="margin-left:auto;margin-right:auto;">Try It Now</div>
-        <div class="section-title">Coba AppleScan AI</div>
+        <div class="section-title">AppleScan AI</div>
         <div class="section-sub center">Unggah gambar buah apel Anda dan biarkan AI menganalisis kondisinya cepat.</div>
     </div>
     <br>
